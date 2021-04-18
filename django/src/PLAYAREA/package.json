@@ -1,0 +1,32 @@
+{
+  "name": "vue-playarea",
+  "version": "1.0.0",
+  "description": "vue frontend part of django project",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config ./webpack.config.prod.js",
+    "build-dev": "webpack --config ./webpack.config.dev.js --watch"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "jquery": "^3.6.0",
+    "leaflet": "^1.7.1",
+    "vue": "^2.6.12",
+    "vue-router": "^3.5.1",
+    "vuetify": "^2.4.9",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.15",
+    "@babel/preset-env": "^7.13.15",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "vue-loader": "^15.9.6",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^5.33.2",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
