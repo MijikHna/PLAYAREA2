@@ -26,6 +26,13 @@
     {% block head %} {% endblock head %}
   </head>
   <body>
+    {% include "./basis/header.html" %}
+    <!-- no-prettier -->
+
     {% block content %} {% endblock content %}
+    <!-- no-prettier -->
+
+    {%include './basis/footer.html' %}
+    <!-- no-prettier -->
   </body>
 </html>

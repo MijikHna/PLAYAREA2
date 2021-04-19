@@ -30,8 +30,13 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
-        test: /\.s[ac]ss$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /\.s[a|c]ss$/i,
+        use: [
+          'style-loader', // no-prettier
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
       },
       {
         test: /\.css$/i,
@@ -58,6 +63,7 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.vue', '.json'],
     alias: {
+      '@webpack-stuff': path.resolve(__dirname, 'webpack-stuff'),
       // vue: 'vue/dist/vue.js',
       // vue: 'vue/dist/vue.runtime.js',
       // vue: 'vue/dist/vue.runtime.esm.js',
