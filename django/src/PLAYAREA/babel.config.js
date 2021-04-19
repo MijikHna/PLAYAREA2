@@ -1,3 +1,11 @@
 module.exports = {
-  presets: [['@babel/preset-env']],
+  'plugins': ['syntax-dynamic-import'],
+  'presets': [
+    [
+      '@babel/preset-env',
+      {
+        'modules': false,
+      },
+    ],
+  ],
 };

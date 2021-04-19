@@ -1,7 +1,5 @@
-import { Vue } from 'vue';
-// const Vue = require('vue');
-import { MyButton } from './components/MyButton.vue';
-// const MyButton = require('./components/MyButton');
+import Vue from 'vue';
+import MyButton from './components/MyButton.vue';
 import * as $ from 'jquery';
 
 $(document).ready(function() {

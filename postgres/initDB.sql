@@ -1,5 +1,5 @@
 CREATE USER admin WITH PASSWORD 'password';
-CREATE DATABASE playarea_db;uu
+CREATE DATABASE playarea_db;
 GRANT ALL PRIVILEGES ON DATABASE playarea_db TO admin;
 /*
 SELECT 'CREATE DATABASE playarea_db' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'playarea_db')\gexec

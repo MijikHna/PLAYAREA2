@@ -1,6 +1,8 @@
 <template>
   <div>
     <button class="btn">Test</button>
+
+    <v-btn>Test</v-btn>
   </div>
 </template>
 
