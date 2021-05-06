@@ -2,7 +2,7 @@ FROM debian:testing-slim
 
 WORKDIR /app
 
-ENV $PATH=/app/PLAYAREA/node_modules/.bin:${PATH}
+ENV $PATH=/app/playarea/node_modules/.bin:${PATH}
 
 RUN apt update && \
   apt -y dist-upgrade

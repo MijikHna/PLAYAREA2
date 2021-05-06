@@ -1,4 +1,3 @@
-// const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 
@@ -24,6 +23,8 @@ module.exports = {
     new VuetifyLoaderPlugin(),
   ],
   module: {
+    // Add your rules for custom modules here
+    // Learn more about loaders from https://webpack.js.org/loaders/
     rules: [
       {
         test: /\\.(js|jsx)$/,
@@ -44,7 +45,7 @@ module.exports = {
           'style-loader',
           'vue-style-loader',
           'css-loader',
-          'postcss-loader',
+          //'postcss-loader',
         ],
       },
       {
@@ -55,19 +56,12 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
       },
-
-      // Add your rules for custom modules here
-      // Learn more about loaders from https://webpack.js.org/loaders/
     ],
   },
   resolve: {
     extensions: ['*', '.js', '.vue', '.json'],
     alias: {
       '@webpack-stuff': path.resolve(__dirname, 'webpack-stuff'),
-      // vue: 'vue/dist/vue.js',
-      // vue: 'vue/dist/vue.runtime.js',
-      // vue: 'vue/dist/vue.runtime.esm.js',
-      // vue: 'vue/dist/vue.esm.js',
     },
   },
 };

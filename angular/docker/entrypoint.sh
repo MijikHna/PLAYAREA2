@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ ! -d /app/PLAYAREA ]; then
-    cd /app/PLAYAREA
+    cd /app/playarea
     npm install
 fi
 

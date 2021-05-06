@@ -1,0 +1,25 @@
+.show-more-link {
+  position: relative;
+  color: blue;
+  &::after {
+    content: '\25BC';
+    position: absolute;
+    bottom: 3px;
+    right: -15px;
+    font-size: 10px;
+  }
+}
+
+.collapsible-list.open {
+  a::after {
+    content: '\25B2';
+    bottom: 3px;
+  }
+  li:default {
+    display: list-item;
+  }
+  li:not(.default) {
+    // display: list-item;
+    display: none;
+  }
+}

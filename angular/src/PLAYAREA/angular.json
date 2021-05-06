@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "PLAYAREA": {
+    "playarea": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -42,7 +42,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/PLAYAREA",
+            "outputPath": "dist/playarea",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -90,18 +90,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "PLAYAREA:build"
+            "browserTarget": "playarea:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "PLAYAREA:build:production"
+              "browserTarget": "playarea:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "PLAYAREA:build"
+            "browserTarget": "playarea:build"
           }
         },
         "test": {
@@ -138,16 +138,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "PLAYAREA:serve"
+            "devServerTarget": "playarea:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "PLAYAREA:serve:production"
+              "devServerTarget": "playarea:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "PLAYAREA"
+  "defaultProject": "playarea"
 }

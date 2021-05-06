@@ -1,19 +1,21 @@
-# PLAYAREA
+# playarea
 
 ## APPS
 
-1. LED-Bar-Dialog
+1. Karnevalsorden Editor
 2. Spotify
+3. Mahjongg
 
 ## Angular
 
-1. `ng new PLAYAREA --skip-git=true --skip-tests=true`
+1. `ng new playarea --skip-git=true --skip-tests=true`
 
 ## Django
 
 ### Django
 
-1. `django-admin startproject PLAYAREA`
+1. `django-admin startproject playarea`
+2. `python manage.py startapp main`
 
 ### Vue
 
@@ -32,3 +34,13 @@
 ## Webpack
 
 * letztes Webpack 4: **"webpack": "^4.44.2"**,
+
+```mermaid
+sequenceDiagram
+  start->>HelloWorldCombiner.combine: calls x1
+  HelloWorldCombiner.combine->>hello: calls x1
+  hello-->>HelloWorldCombiner.combine: returns str
+  HelloWorldCombiner.combine->>world: calls x1
+  world-->>HelloWorldCombiner.combine: returns str
+  HelloWorldCombiner.combine-->>start: returns str
+```

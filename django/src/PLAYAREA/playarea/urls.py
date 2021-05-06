@@ -1,4 +1,4 @@
-"""PLAYAREA URL Configuration
+"""playarea URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -14,9 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 
 urlpatterns = [
+    # admin
     path('admin/', admin.site.urls),
-    path('karnevalsorden-editor', include('KARNEVALSORDEN_EDITOR.urls'))
+    # main
+    path('', include('main.urls')),
+    re_path(
+        r'index/|home/|main/',
+        include('main.urls')
+    ),
+    # karnevalsorden-editor
+    path(
+        'karnevalsorden-editor/',
+        include('karnevalsorden_editor.urls')
+    ),
 ]

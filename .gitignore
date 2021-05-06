@@ -383,4 +383,5 @@ yarn-error.log
 # End of https://www.toptal.com/developers/gitignore/api/vscode,vuejs,node,python,django,linux
 
 ### Sonstiges
-/django/src/PLAYAREA/static_root/
+/django/src/static_root/
+/django/src/media_root/

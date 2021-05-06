@@ -40,7 +40,7 @@ services:
   django:
     build: 
       context:  ./django/docker/
-    image: playarea/django-backend
+    image: playarea/django
     hostname: django
     container_name: django
     restart: on-failure
@@ -59,7 +59,6 @@ services:
       - postgres
       - mongo
 
-  
   mongo:
     build:
       context: ./mongo
@@ -89,7 +88,7 @@ services:
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
     volumes:
-      - playarea-postgres-data:/var/lib/postgresql/
+      - playarea-postgres-data:/var/lib/postgresql/data
     networks:
       playarea-nw:
         ipv4_address: 192.16.10.50
@@ -103,8 +102,8 @@ networks:
         - subnet: "192.16.10.0/24"
 
 volumes:
-  playarea-mongo-data:
-  playarea-postgres-data:
+  playarea-mongo-data: {}
+  playarea-postgres-data: {}
 
   
   
