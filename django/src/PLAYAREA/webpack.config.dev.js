@@ -61,6 +61,7 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.vue', '.json'],
     alias: {
+      '@app': path.resolve(__dirname),
       '@webpack-stuff': path.resolve(__dirname, 'webpack-stuff'),
     },
   },

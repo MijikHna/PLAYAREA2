@@ -25,11 +25,14 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src={% static '/base.bundle.js' %}></script>
-
+    <script src={% static '/playarea-base.bundle.js' %}></script>
+    
+    {% block head_index_files %} {% endblock head_index_files %}
     {% block head %} {% endblock head %}
   </head>
   <body>
+    {% block navigation %} {% endblock navigation %}
     {% block content %} {% endblock content %}
+    {% block footer %} {% endblock footer %}
   </body>
 </html>

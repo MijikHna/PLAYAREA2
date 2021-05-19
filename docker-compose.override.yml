@@ -6,8 +6,8 @@ services:
     # command: 'bin/bash'
     # tty: true
 
-    logging:
-      driver: 'none'
+    # logging:
+    #   driver: 'none'
 
   angular:
     command: 'echo "I will be disabled"'
@@ -30,5 +30,7 @@ services:
     #   driver: 'none'
 
   mongo:
+    logging:
+      driver: 'none'
     # command: 'echo "I will be disabled"'
     # restart: 'no'

@@ -3,122 +3,36 @@
 {% load static %}
 
 <!--no-prettier-->
-{% block head %} {% endblock head %}
+{% block head_index_files %}
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.2.1/trianglify.min.js"
+></script>
+
+<script type="text/javascript" src={% static 'main.bundle.js' %}></script>
+{% endblock head_index_files %}
+
+<!-- no-prettier -->
+{% block head %}
+  
+{% endblock head %}
+
+<!-- no-prettier -->
+{% block navigation %}
+  {% include "header.html" %}
+{% endblock navigation %}
 
 <!--no-prettier-->
 {% block content %}
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
-  <a href="{% url 'index' %}" class="navbar-brand">PLAYAREA</a>
+<div id="all-apps">
 
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarContent"
-    aria-controls="navbar"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarContent">
-    <ul class="navbar-nav mr-auto">
-      <!-- Karnevalsorden Editor -->
-      <li class="nav-item">
-        <a class="nav-link text-white" href="{% url 'karnevalsorden-editor' %}"
-          >Karnevalsorden Editor</a
-        >
-      </li>
-      <!-- ThreeJS Playarea -->
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link droptdown-toggler text-white"
-          href="#"
-          id="navbarThreeJSPlayareaDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-          >Three JS Playground</a
-        >
-        <div
-          class="dropdown-menu bg-primary"
-          aria-labelledby="navbarThreeJSPlayareaDropdown"
-        >
-          <a
-            href="{% url 'test-threejs-001' %}"
-            class="dropdown-item text-white"
-            >Test ThreeJS 001</a
-          >
-          <a
-            href="{% url 'test-threejs-002' %}"
-            class="dropdown-item text-white"
-            >Test ThreeJS 002</a
-          >
-          <a
-            href="{% url 'test-threejs-car' %}"
-            class="dropdown-item text-white"
-            >Test ThreeJS 003</a
-          >
-        </div>
-      </li>
-
-      <!-- Vue Playarea -->
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link droptdown-toggler text-white"
-          href="#"
-          id="navbarVuePlayareaDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-          >Vue Playground</a
-        >
-        <div
-          class="dropdown-menu bg-primary"
-          aria-labelledby="navbarVuelayareaDropdown"
-        >
-          <a href="{% url 'vue-test-001' %}" class="dropdown-item text-white"
-            >Test Vue 001</a
-          >
-          <a href="{% url 'vue-test-002' %}" class="dropdown-item text-white"
-            >Test Vue 002</a
-          >
-          <a
-            href="{% url 'vue-test-modal-001' %}"
-            class="dropdown-item text-white"
-            >Vue Test Modal 001</a
-          >
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link droptdown-toggler text-white"
-          href="#"
-          id="navbarVuePlayareaDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-          >Various</a
-        >
-        <div
-          class="dropdown-menu bg-primary"
-          aria-labelledby="navbarVuelayareaDropdown"
-        >
-          <a
-            href="{% url 'pure-js-component' %}"
-            class="dropdown-item text-white"
-            >Test Vue 001</a
-          >
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<!-- no-prttier -->
-{% block content2 %} {% endblock content2 %}
+</div>
+{% endblock content %}
 
 <!-- np-prettier -->
-{% endblock content %}
+{% block footer %} {% endblock footer %}
+

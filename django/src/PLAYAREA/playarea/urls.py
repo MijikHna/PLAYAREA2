@@ -20,14 +20,7 @@ urlpatterns = [
     # admin
     path('admin/', admin.site.urls),
     # main
-    path('', include('main.urls')),
-    re_path(
-        r'index/|home/|main/',
-        include('main.urls')
-    ),
-    # karnevalsorden-editor
-    path(
-        'karnevalsorden-editor/',
-        include('karnevalsorden_editor.urls')
-    ),
+    re_path(r'^index/|^home/|^main/|', include('main.urls')),
+    # apps
+    path('apps/', include('apps.urls')),
 ]

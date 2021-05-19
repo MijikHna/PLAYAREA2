@@ -35,6 +35,18 @@
 
 * letztes Webpack 4: **"webpack": "^4.44.2"**,
 
+## Sonstiges
+
+### Django MVC
+
+| Django   | MVC        |
+| -------- | ---------- |
+| Model    | Model      |
+| Template | View       |
+| View     | Controller |
+
+### Mermaid (alternative zu PlantUML)
+
 ```mermaid
 sequenceDiagram
   start->>HelloWorldCombiner.combine: calls x1

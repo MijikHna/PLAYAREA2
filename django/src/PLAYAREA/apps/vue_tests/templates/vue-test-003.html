@@ -1,0 +1,18 @@
+{% extends "BASE.html" %}
+{% load static %}
+
+{% block head_index_files %} {% endblock head_index_files %}
+<!--no-prettier-->
+{% block head %}
+<script src={% static 'apps/vue_tests.bundle.js' %}></script>
+{% endblock head %}
+
+{% block navigation %} 
+  {% include "header.html" %}
+{% endblock navigation %}
+<!-- no-prettier -->
+{% block content %}
+<div id="vue-test-003"></div>
+{% endblock content %}
+<!-- no-prettier -->
+{% block footer %} {% endblock footer %}
