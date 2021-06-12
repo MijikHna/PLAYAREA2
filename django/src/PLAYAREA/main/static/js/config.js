@@ -1,7 +1,8 @@
 const config = {
   urls: {
-    base: 'http://localhost:8000',
-    allApps: 'http://localhost:8000/get-all-apps',
+    // base: 'http://localhost:8000',
+    base: `http://${window.location.host}`,
+    allApps: '/get-all-apps',
   },
 };
 

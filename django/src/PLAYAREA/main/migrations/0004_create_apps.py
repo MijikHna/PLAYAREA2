@@ -5,12 +5,12 @@ def create_apps(apps, schema_editor):
     from main.models import App, SubApp
 
     accounts: App = App.objects.create(
-        name='Accounts', name_stringified=None, href='accounts/'
+        name='Accounts', name_stringified=None, href='accounts/dashboard/'
     )
     accounts.save()
 
     karnevalsorden_editor: App = App.objects.create(
-        name='Karnevalsorden Editor', name_stringified=None, href='karnevalsorden-editor'
+        name='Karnevalsorden Editor', name_stringified=None, href='karnevalsorden-editor/'
     )
     karnevalsorden_editor.save()
 
@@ -73,7 +73,7 @@ def create_apps(apps, schema_editor):
     )
 
     subVariousPureComp: SubApp = SubApp.objects.create(
-        name='Pure JS Component', name_stringified=None, href='pure-js-component'
+        name='Pure JS Component', name_stringified=None, href='pure-js-component/'
     )
     subVariousPureComp.save()
 
@@ -85,13 +85,27 @@ def create_apps(apps, schema_editor):
     subVariosTestRpc: SubApp = SubApp.objects.create(
         name='Test RPC 1',
         name_stringified=None,
-        href='test-rpc-1'
+        href='test-rpc-1/'
+    )
+    subVariosCustomHTML: SubApps = SubApp.objects.create(
+        name="Custom HTML",
+        name_stringified=None,
+        href='custom-html',
     )
 
     various.subApps.add(subVariousPureComp)
     various.subApps.add(subVariousDateRangePick)
     various.subApps.add(subVariosTestRpc)
+    various.subApps.add(subVariosCustomHTML)
     various.save()
+
+    excelClone: App = App.objects.create(
+        name='Excel Clone',
+        name_stringified='Excel Clone',
+        href='excel-clone'
+    )
+
+    excelClone.save()
 
 
 class Migration(migrations.Migration):

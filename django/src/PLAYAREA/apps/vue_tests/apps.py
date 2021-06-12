@@ -2,4 +2,7 @@ from django.apps import AppConfig
 
 
 class VueTestsConfig(AppConfig):
-    name = 'vue_tests'
+    name = 'apps.vue_tests'
+
+
+o

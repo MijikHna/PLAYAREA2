@@ -2,8 +2,8 @@
 <!-- no-prettier -->
 {% load static %}
 
-<!--no-prettier-->
-{% block head_index_files %}
+<!-- no-prettier -->
+{% block head %}
 <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"
@@ -13,12 +13,7 @@
   src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.2.1/trianglify.min.js"
 ></script>
 
-<script type="text/javascript" src={% static 'main.bundle.js' %}></script>
-{% endblock head_index_files %}
-
-<!-- no-prettier -->
-{% block head %}
-  
+<script type="text/javascript" src={% static 'main.bundle.js' %}></script>  
 {% endblock head %}
 
 <!-- no-prettier -->
@@ -28,9 +23,7 @@
 
 <!--no-prettier-->
 {% block content %}
-<div id="all-apps">
-
-</div>
+<div id="all-apps"></div>
 {% endblock content %}
 
 <!-- np-prettier -->

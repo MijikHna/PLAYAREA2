@@ -1,21 +1,26 @@
 {% extends "BASE.html" %}
 {% load static %}
 
-{%block head %}
-<script src={% static '/karnevalsorden_editor.bundle.js' %}></script>
+<!--no-prettier-->
+{% block head %}
+<script src={% static '/apps/karnevalsorden_editor.bundle.js' %}></script>
 {% endblock head %}
 
+<!-- no-prettier -->
+{% block navigation %} 
+  {% include "header.html" %}
+{% endblock navigation %}
+
+<!-- no-prettier -->
 {% block content %}
-  <!-- no-prettier-->
-  {% include "./basis/header.html" %}
-  <div id="app">
-    <p>ID = app</p>
-  </div>
+<div id="app" class="m-2">
+  <p>ID = app</p>
+</div>
 
-  <div id="my-button"></div>
-  <p>Test</p>
+<div id="my-button"></div>
+<p>Test</p>
 
-  <!-- no-prettier -->
-  {%include './basis/footer.html' %}
 {% endblock content %}
+
+{% block footer %} {% endblock footer %}
 

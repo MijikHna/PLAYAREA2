@@ -5,6 +5,8 @@ const path = require('path');
 
 const entries = require('./entries.js');
 
+console.log('@app: ' + path.resolve(__dirname));
+
 module.exports = {
   mode: 'development',
   devtool: 'eval-cheap-source-map',

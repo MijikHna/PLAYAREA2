@@ -1,15 +1,41 @@
 from django.shortcuts import render
 
-# Create your views here.
+from typing import Dict, Any
+
+from playarea.utils.Helper import Helper
 
 
 def test_threejs_001(request):
-    return render(request, 'test-threejs-001.html', {'title': 'Test ThreeJS 001'})
+    if request.user.is_authenticated:
+        context: Dict[str, Any] = {}
+        context['title'] = 'Test ThreeJS 001'
+        context['apps'] = Helper.getAllApps()
+
+        return render(request, 'test-threejs-001.html', context)
+    else:
+        # TODO: return 403/401
+        pass
 
 
 def test_threejs_002(request):
-    return render(request, 'test-threejs-002.html', {'title': 'Test ThreeJS 002'})
+    if request.user.is_authenticated:
+        context: Dict[str, Any] = {}
+        context['title'] = 'Test ThreeJS 002'
+        context['apps'] = Helper.getAllApps()
+
+        return render(request, 'test-threejs-002.html', context=context)
+    else:
+        # TODO: return 403/401
+        pass
 
 
 def test_threejs_car(request):
-    return render(request, 'test-threejs-car.html', {'title': 'Test ThreeJS Car'})
+    if request.user.is_authenticated:
+        context: Dict[str, Any] = {}
+        context['title'] = 'Test ThreeJS 002'
+        context['apps'] = Helper.getAllApps()
+
+        return render(request, 'test-threejs-car.html', context)
+    else:
+        # TODO: return 403/401
+        pass

@@ -385,3 +385,6 @@ yarn-error.log
 ### Sonstiges
 /django/src/static_root/
 /django/src/media_root/
+.vscode/
+**TESTS/
+**/fontawesome-free-5.15.3-web/

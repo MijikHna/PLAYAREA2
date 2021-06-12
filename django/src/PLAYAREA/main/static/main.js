@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue from 'vue/dist/vue.js';
 import * as $ from 'jquery';
 
 //import vuetify from '@webpack-stuff/vuetify.js';

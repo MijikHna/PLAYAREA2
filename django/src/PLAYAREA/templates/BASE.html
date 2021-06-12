@@ -24,15 +24,17 @@
       integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
       crossorigin="anonymous"
     ></script>
-
-    <script src={% static '/playarea-base.bundle.js' %}></script>
     
-    {% block head_index_files %} {% endblock head_index_files %}
+    <link rel="stylesheet" href={% static '/css/default.css' %}>
+    <script src={% static '/playarea-base.bundle.js' %}></script>
+    <script src={% static '/main.bundle.js' %}></script>
+    
     {% block head %} {% endblock head %}
   </head>
   <body>
     {% block navigation %} {% endblock navigation %}
     {% block content %} {% endblock content %}
     {% block footer %} {% endblock footer %}
+    <div id="notifier-root"></div>
   </body>
 </html>

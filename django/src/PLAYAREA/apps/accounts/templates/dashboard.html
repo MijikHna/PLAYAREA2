@@ -1,0 +1,153 @@
+{% extends "BASE.html" %}
+<!-- no-prettier -->
+{% load static %}
+
+<!-- no-prettier -->
+{% block head %}
+
+<!-- no-prettier -->
+<link rel="stylesheet" href={% static '/css/fontawesome-free-5.15.3-web/css/all.css' %}>
+<script src={% static '/apps/accounts.bundle.js'%}></script>
+<script src={% static '/apps/accounts/dashboard.bundle.js'%}></script>
+<!-- no-prettier -->
+{% endblock head %}
+
+<!-- no-prettier -->
+{% block navigation %}
+<!-- no-prettier -->
+{% include "header.html" %}
+<!-- no-prettier -->
+{% endblock navigation %}
+
+<!-- no-prettier -->
+{% block content %}
+<div id="page-content">
+  <!-- Sidebar -->
+  <nav id="sidebar" class="bg-secondary" >
+    <div class="sidebar-header">
+      <div class="row justify-content-between align-items-center">
+        <h3 class="">My Account</h3>
+        <div class="">
+          <button type="button" id="sidebarCollapseNav" class="btn btn-light py-0 px-1">
+            <span>
+            <i class="fas fa-chevron-left"></i>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-nav" class="nav flex-column">
+      <li
+        data-link-title="General"
+        data-section-id="general"
+      ></li>
+      <li
+        data-link-title="Change profile"
+        data-section-id="change-profile"
+      ></li>
+      <li
+        data-link-title="Change password"
+        data-section-id="change-password"
+      ></li>
+    </ul>
+  </nav>
+
+  <!-- Page Content -->
+  <div id="content">
+    <nav class="navbar navbar-light bg-light justify-content-between">
+      <button type="button" id="sidebarCollapse" class="btn btn-secondary py-0 px-1">
+        <span>
+          <i id="sidebar-icon" class="fas fa-chevron-right"></i>
+        </span>
+    </button>
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    </nav>
+
+    <div class="container">
+      <div id="change-profile" class="row section">
+        <div class="col-12">
+          <h2>Change picture</h2>
+        </div>
+        <div class="col-12">
+          <form class="mt-2" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="{{ form_profile.bio.id_for_label}}">{{ form_profile.bio.label }}</label>
+              {{form_profile.bio}}
+              {{form_profile.bio.errors}}
+            </div>
+            <div class="">
+              <label class="custom-file-label-X" for="{{ form_profile.picture.id_for_label}}">{{ form_profile.picture.label }}</label>
+              <div class="custom-file">
+                {{form_profile.picture}}
+                <label class="custom-file-label" for="{{ form_profile.picture.id_for_label}}">{{form_profile.instance.picture}}</label>
+                <script>
+                  let pictureFileInputId = '{{form_profile.picture.id_for_label}}'
+                </script>
+              </div>
+              {{form_profile.picture.errors}}
+            </div>
+            <div class="col-12 text-center my-2">
+              <input class="btn btn-info" name="changeProfile" type="submit" value="Save" />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="change-password" class="row section">
+        <div class="col-12">
+          <h2>Change password</h2>
+        </div>
+        <div class="col-12">
+          <form class="mt-5" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label
+              for="{{ form_password.old_password.id_for_label }}"
+              >{{ form_password.old_password.label }}</label
+              >
+                {{ form_password.old_password }}
+                <!--no-prettier-->
+                {{ form_password.old_password.errors }}
+            </div>
+            <div class="form-group">
+              <label
+              for="{{ form_password.new_password1.id_for_label_tag }}"
+              >
+                {{ form_password.new_password1.label_tag }}
+              </label>
+                {{ form_password.new_password1 }}
+                <!--no-prettier-->
+                {{ form_password.new_password1.errors }}
+            </div>
+            <div class="form-group">
+              <label
+              for="{{ form_password.new_password2.label_tag.value }}"
+              >{{ form_password.new_password2.label_tag }}</label
+              >
+              {{ form_password.new_password2 }}
+              <!--no-prettier-->
+              {{ form_password.new_password2.errors }}
+            </div>
+            <div class="col-12 text-center">
+              <input class="btn btn-info" type="submit" name="changePassword" value="Save"/>
+            </div>
+          </form>
+        </div>
+        {% if notifier != None%}
+          <span
+            id="notifier-data"
+            data-notifier-Name="{{ notifier.notifierName }}"
+            data-notifier-message="{{ notifier.notifierMessage }}"
+            data-result="{{ notifier.result }}"
+          ></span>
+          {% endif %} 
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+<!-- no-prettier -->
+{% block footer %} {% endblock footer %}

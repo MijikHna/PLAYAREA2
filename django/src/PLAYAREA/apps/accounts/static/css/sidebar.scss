@@ -1,0 +1,71 @@
+a,
+a:hover,
+a:focus {
+  color: white;
+  transition: all 0.3s;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+#page-content {
+  display: flex;
+  /*
+  width: 100%;
+  align-items: stretch;
+  */
+}
+
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  color: #fff;
+  transition: all 0.3s;
+  margin-left: -250px;
+}
+
+#sidebar.active {
+  margin-left: 0px;
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+}
+
+#sidebar ul li a {
+  font-size: 1.1em;
+}
+
+#sidebar ul li a:hover {
+  color: black;
+  background: #fff;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+  width: 100%;
+  min-height: calc(100vh - 56px);
+  transition: all 0.3s;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 500px) {
+  #sidebar {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: calc(100vh - 56px);
+    position: absolute;
+    z-index: 1000;
+    margin-left: -100%;
+  }
+  #sidebar.active {
+    margin-left: 0%;
+  }
+}

@@ -13,7 +13,7 @@ class App(models.Model):
     subApps = models.ManyToManyField('SubApp')
 
     def __str__(self) -> str:
-        return self.name
+        return f'{self.name}: {len(self.subApps.all())}'
 
     def serialize(self) -> Dict[str, Any]:
         return {
