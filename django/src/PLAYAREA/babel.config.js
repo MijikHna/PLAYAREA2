@@ -1,11 +1,8 @@
 module.exports = {
-  'plugins': ['syntax-dynamic-import'],
-  'presets': [
-    [
-      '@babel/preset-env',
-      {
-        'modules': false,
-      },
-    ],
+  'plugins': [
+    // -- no-prettier --
+    '@babel/plugin-syntax-dynamic-import',
+    '@babel/plugin-transform-runtime',
   ],
+  'presets': [['@babel/preset-env']],
 };

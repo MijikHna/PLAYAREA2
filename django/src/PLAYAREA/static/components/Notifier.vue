@@ -71,7 +71,8 @@ export default {
       } else {
         diff /= 60;
         if (diff < 10) {
-          $(this.$refs.toast).toast("show");
+          diff = Math.round(diff);
+          this.elapsedTime = `${diff} minutes ago`;
         } else {
           $(this.$refs.toast).toast("hide");
           clearTimeout(this.timeOut);
@@ -90,10 +91,7 @@ export default {
         second: "numeric",
       };
 
-      console.log(this.activatedTime.toLocaleDateString("en-US", options));
-      console.log(currentTime.toLocaleDateString("en-US", options));
-      console.log(diff);
-      // do recalc every minute
+      // do recalc every 10 seconds
       this.timeOut = setTimeout(this.calcTime, 10000);
     },
     closeToast() {

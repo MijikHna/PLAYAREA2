@@ -32,7 +32,7 @@
 
 <script>
 import axios from "axios";
-import config from "../js/config.js";
+import { config } from "../js/config.js";
 export default {
   name: "Car",
   data() {
@@ -40,7 +40,7 @@ export default {
       showCarInput: false,
       carName: null,
       carModel: null,
-      ...config,
+      config: config,
     };
   },
   props: {

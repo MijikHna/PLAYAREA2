@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LogoutView, PasswordChangeView, PasswordChangeDoneView, LoginView
 
-from .forms import AuthenticationCustomForm, PasswordChangeCustomForm, ProfileForm, UserCreationCustomForm
+from .forms import AuthenticationCustomForm, PasswordChangeCustomForm, ProfileForm, UserChangeCustomForm, UserCreationCustomForm
 
 from playarea.utils.Helper import Helper
 
@@ -19,13 +19,17 @@ def dashboard(request):
     context: Dict[str, Any] = {'title': 'My Account'}
     context['apps'] = Helper.getAllApps()
 
-    if request.method == "GET":
-        form_profile = ProfileForm(
-            instance=Profile.objects.get(pk=request.user.id))
-        context['form_profile'] = form_profile
+    form_profile = ProfileForm(
+        instance=Profile.objects.get(pk=request.user.id))
+    form_password = PasswordChangeCustomForm(request.user)
+    form_user = UserChangeCustomForm(
+        instance=User.objects.get(pk=request.user.id))
 
-        form_password = PasswordChangeCustomForm(request.user)
+    if request.method == "GET":
+        context['form_profile'] = form_profile
         context['form_password'] = form_password
+        context['form_user'] = form_user
+
     elif request.method == "POST":
         if 'changeProfile' in request.POST:
             form_profile = ProfileForm(
@@ -34,8 +38,8 @@ def dashboard(request):
                 instance=Profile.objects.get(id=request.user.id)
             )
 
-            if form_profile.is_valid():
-                #form_profile.user = request.user
+            if form_profile.is_valid() and form_profile.has_changed():
+                # form_profile.user = request.user
                 form_profile.save()
                 profile_notifier = {
                     'notifierName': 'Profile',
@@ -50,11 +54,6 @@ def dashboard(request):
                     'result': 'error'
                 }
                 context['notifier'] = profile_notifier
-
-            form_password = PasswordChangeCustomForm(request.user)
-
-            context['form_password'] = form_password
-            context['form_profile'] = form_profile
 
         elif 'changePassword' in request.POST:
             form_password = PasswordChangeCustomForm(
@@ -77,10 +76,30 @@ def dashboard(request):
                 }
                 context['notifier'] = password_change_notifier
 
-            form_profile = ProfileForm(
-                instance=Profile.objects.get(pk=request.user.id))
-            context['form_password'] = form_password
-            context['form_profile'] = form_profile
+        elif 'changeUser' in request.POST:
+            form_user = UserChangeCustomForm(
+                request.POST, instance=request.user)
+
+            if form_user.is_valid() and form_user.has_changed():
+                form_user.save()
+                user_change_notifier = {
+                    'notifierName': 'User',
+                    'notifierMessage': 'User succesfully changed',
+                    'result': 'success'
+                }
+                context['notifier'] = user_change_notifier
+            else:
+                user_change_notifier = {
+                    'notifierName': 'User',
+                    'notifierMessage': 'User not changed',
+                    'result': 'error'
+                }
+
+                context['notifier'] = user_change_notifier
+
+    context['form_password'] = form_password
+    context['form_profile'] = form_profile
+    context['form_user'] = form_user
 
     return render(request, 'dashboard.html', context)
 

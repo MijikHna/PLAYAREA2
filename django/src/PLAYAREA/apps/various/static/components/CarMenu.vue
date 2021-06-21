@@ -7,7 +7,7 @@
 
 <script>
 import axios from "axios";
-import config from "../js/config.js";
+import { config } from "../js/config.js";
 import Car from "./Car.vue";
 export default {
   name: "CarMenu",
@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       cars: null,
-      ...config,
+      config: config,
     };
   },
   mounted() {

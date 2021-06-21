@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import config from "../js/config.js";
+import { config } from "../js/config.js";
 import AppCard from "./AppCard.vue";
 export default {
   name: "Apps",
@@ -27,7 +27,7 @@ export default {
   data: function () {
     return {
       apps: null,
-      ...config,
+      config: config,
     };
   },
   mounted() {
@@ -48,16 +48,7 @@ export default {
       if (response.status === 200) {
         const data = await response.json();
         if (data) {
-          /*
-          this.apps = data.map((app) => {
-            if (!app.href.startsWith("/")) {
-              app.href = "/" + app.href;
-            }
-            return app;
-          });
-          */
           this.apps = data;
-          console.log(data);
         }
       }
     },

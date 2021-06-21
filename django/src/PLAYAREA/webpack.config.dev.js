@@ -20,6 +20,9 @@ module.exports = {
     open: true,
     host: 'localhost',
   },
+  performance: {
+    hints: false,
+  },
   plugins: [
     new VueLoaderPlugin(), // disable prettier
     new VuetifyLoaderPlugin(),

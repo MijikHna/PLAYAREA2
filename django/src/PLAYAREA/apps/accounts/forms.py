@@ -1,8 +1,9 @@
 from .models import Profile
+from django.contrib.auth.models import User
 
-from django.forms import ModelForm, Textarea, FileInput
+from django.forms import ModelForm, Textarea, FileInput, TextInput, widgets
 
-from django.contrib.auth.forms import PasswordChangeForm, AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import PasswordChangeForm, AuthenticationForm, UserChangeForm, UserCreationForm
 
 
 class PasswordChangeCustomForm(PasswordChangeForm):
@@ -59,6 +60,36 @@ class ProfileForm(ModelForm):
                 'error_1': 'test picture'
             }
         }
+
     def __init__(self, *args, **kwargs):
-      super(ProfileForm, self).__init__(*args, **kwargs)
-      self.fields['picture'].required = False
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        self.fields['picture'].required = False
+
+
+class UserChangeCustomForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'first_name',
+            'last_name',
+            'email'
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super(UserChangeCustomForm, self).__init__(*args, **kwargs)
+
+        self.fields['username'].widget.attrs.update({'class': 'form-control'})
+        self.fields['first_name'].widget.attrs.update(
+            {'class': 'form-control'})
+        self.fields['last_name'].widget.attrs.update({'class': 'form-control'})
+        self.fields['email'].widget.attrs.update({'class': 'form-control'})
+
+        '''
+        widgets = {
+            'username': TextInput(attrs={'class': 'form-control'}),
+            'first_name': TextInput(attrs={'class': 'form-control'}),
+            'last_name': TextInput(attrs={'class': 'form-control'}),
+            'email': TextInput(attrs={'class': 'form-control'})
+        }
+        '''

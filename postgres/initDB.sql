@@ -1,3 +1,5 @@
 CREATE USER admin WITH PASSWORD 'password';
 CREATE DATABASE playarea_db;
 GRANT ALL PRIVILEGES ON DATABASE playarea_db TO admin;
+
+ALTER USER admin CREATEDB;

@@ -42,6 +42,10 @@
         data-section-id="general"
       ></li>
       <li
+        data-link-title="User"
+        data-section-id="change-user"
+      ></li>
+      <li
         data-link-title="Change profile"
         data-section-id="change-profile"
       ></li>
@@ -67,6 +71,44 @@
     </nav>
 
     <div class="container">
+      <!-- User name -->
+      {% if form_user %}
+      <div id="change-user" class="row section">
+        <div class="col-12">
+          <h2>Change Username</h2>
+        </div>
+        <div class="col-12">
+          <form class="mt-2" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="{{ form_user.username.id_for_label }}">{{ form_user.username.label }}</label>
+              {{ form_user.username }}
+              {{ form_user.username.errors }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form_user.password.id_for_label }}">{{ form_user.first_name.label }}</label>
+              {{ form_user.first_name }}
+              {{ form_user.first_name.errors }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form_user.password.id_for_label }}">{{ form_user.last_name.label }}</label>
+              {{ form_user.last_name }}
+              {{ form_user.last_name.errors }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form_user.password.id_for_label }}">{{ form_user.email.label }}</label>
+              {{ form_user.email }}
+              {{ form_user.email.errors }}
+            </div>
+            <div class="col-12 text-center">
+              <input class="btn btn-info" type="submit" name="changeUser" value="Save"/>
+            </div>
+          </form>
+        </div>
+      </div>
+      {% endif %}
+      <!--User profile-->
+      {% if form_profile %}
       <div id="change-profile" class="row section">
         <div class="col-12">
           <h2>Change picture</h2>
@@ -96,6 +138,9 @@
           </form>
         </div>
       </div>
+      {% endif %}
+      <!--User Password-->
+      {% if form_password %}
       <div id="change-password" class="row section">
         <div class="col-12">
           <h2>Change password</h2>
@@ -143,7 +188,8 @@
             data-notifier-message="{{ notifier.notifierMessage }}"
             data-result="{{ notifier.result }}"
           ></span>
-          {% endif %} 
+        {% endif %} 
+      {% endif %}
     </div>
   </div>
 </div>
