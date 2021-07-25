@@ -4,8 +4,8 @@
       ref="test-modal-001"
       class="modal fade"
       tabindex="-1"
-      @click.self="cancel()"
-      @keydown.esc="cancel()"
+      @click.self="cancel($event)"
+      @keydown.esc="cancel($event)"
     >
       <div class="modal-dialog" :class="additionalClasses">
         <div class="modal-content">
@@ -30,7 +30,12 @@
             <button type="button" class="btn btn-secondary" @click="cancel()">
               Close
             </button>
-            <button type="button" class="btn btn-primary" @click="confirm()">
+            <button
+              v-if="save"
+              type="button"
+              class="btn btn-primary"
+              @click="confirm()"
+            >
               Save changes
             </button>
           </div>
@@ -43,6 +48,10 @@
 <script>
 export default {
   props: {
+    save: {
+      type: Boolean,
+      default: true,
+    },
     open: Boolean,
     additionalClasses: {
       type: String,
@@ -59,7 +68,8 @@ export default {
     },
   },
   methods: {
-    cancel() {
+    cancel(event) {
+      console.log(event);
       this.$emit("done", null);
     },
     confirm() {

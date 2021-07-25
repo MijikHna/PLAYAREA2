@@ -1,19 +1,30 @@
 from django.shortcuts import render
 
+from django.contrib.auth.decorators import login_required
+from playarea.utils.decorators import set_base_context
+
 # Create your views here.
 
 
-def vue_test_001(request):
-    return render(request, 'vue-test-001.html', {'title': 'Test Vue 001'})
+@login_required
+@set_base_context
+def vue_test_001(request, context):
+    return render(request, 'vue-test-001.html', context)
 
 
-def vue_test_002(request):
-    return render(request, 'vue-test-002.html', {'title': 'Test Vue 002'})
+@login_required
+@set_base_context
+def vue_test_002(request, context):
+    return render(request, 'vue-test-002.html', context)
 
 
-def vue_test_003(request):
-    return render(request, 'vue-test-003.html', {'title': 'Test Vue 003'})
+@login_required
+@set_base_context
+def vue_test_003(request, context):
+    return render(request, 'vue-test-003.html', context)
 
 
-def vue_test_modal_001(request):
-    return render(request, 'vue-test-modal-001.html', {'title': 'Test Vue Modal 001'})
+@login_required
+@set_base_context
+def vue_test_modal_001(request, context):
+    return render(request, 'vue-test-modal-001.html', context)

@@ -92,11 +92,17 @@ def create_apps(apps, schema_editor):
         name_stringified=None,
         href='custom-html',
     )
+    subVariosCssSwipeAnime: SubApps = SubApp.objects.create(
+        name="CSS Swipe Animation",
+        name_stringified=None,
+        href='css-swipe-animation',
+    )
 
     various.subApps.add(subVariousPureComp)
     various.subApps.add(subVariousDateRangePick)
     various.subApps.add(subVariosTestRpc)
     various.subApps.add(subVariosCustomHTML)
+    various.subApps.add(subVariosCssSwipeAnime)
     various.save()
 
     excelClone: App = App.objects.create(

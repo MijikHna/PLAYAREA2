@@ -3,7 +3,9 @@
 {% load static %}
 
 <!-- no-prettier -->
-{% block head %} {% endblock head %}
+{% block head %}
+<script src="{% static 'apps/excel-clone.bundle.js' %}"></script>
+{% endblock head %}
 
 <!-- no-prettier -->
 {% block navigation %}
@@ -14,7 +16,9 @@
 
 <!-- no-prettier -->
 {% block content %}
-<div id="excel-clone-table"></div>
+<div id="excel-clone"></div>
+
+<!-- <div id="context-menu"></div> -->
 {% endblock content %}
 
 <!-- no-prettier -->

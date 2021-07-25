@@ -1,0 +1,112 @@
+.css-swipe-anime-container {
+  width: 60%;
+  height: 30em;
+  overflow: hidden;
+  margin: 10em, auto;
+  position: relative;
+}
+
+.css-swipe-anime-content {
+  width: 100%;
+  background: rgb(81, 81, 143);
+  transform: translateY(0);
+  transition: transform 1s ease-in-out;
+}
+
+.css-swipe-anime-content:hover {
+  transform: translateY(-430px);
+}
+
+section {
+  padding: 4em 8em;
+
+  &:before {
+    content: 'Excellence';
+    position: absolute;
+    left: 20%;
+    top: 0;
+    font-size: 14rem;
+    color: rgba(255, 255, 255, 0.06);
+  }
+}
+
+section:nth-of-type(2) {
+  background: rgb(43, 43, 77);
+}
+
+h1 {
+  color: white;
+  font-size: 3rem;
+}
+
+p {
+  color: white;
+  font-size: 1.25rem;
+  line-height: 2rem;
+}
+
+.css-swipe-animation-cursor {
+  position: absolute;
+  width: 3em;
+  height: 3em;
+  border-radius: 3em;
+  border: 4px solid white;
+  top: 2em;
+  left: 2em;
+  pointer-events: none;
+
+  &:before {
+    position: absolute;
+    width: 1.5em;
+    height: 1.5em;
+    background: white;
+    border-radius: 50%;
+    margin: 0.5em;
+    content: '';
+  }
+}
+
+.css-swipe-animation-cursor,
+.css-swipe-animation-cursor:before {
+  opacity: 0;
+}
+
+.css-swipe-anime-container:hover .css-swipe-animation-cursor {
+  animation: move-cursor 1s ease-in-out;
+}
+
+.css-swipe-anime-container:hover .css-swipe-animation-cursor:before {
+  animation: move-center 1s ease-in-out;
+}
+
+@keyframes move-cursor {
+  0% {
+    height: 3em;
+  }
+  20% {
+    opacity: 1;
+  }
+  50% {
+    height: 8em;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(5em);
+    height: 3em;
+  }
+}
+
+@keyframes move-center {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(5em);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

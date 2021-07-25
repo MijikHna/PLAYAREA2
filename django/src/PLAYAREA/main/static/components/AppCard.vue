@@ -16,6 +16,7 @@
         </button>
         <Modal
           :open="showModal"
+          :save="false"
           :additionalClasses="'modal-dialog-scrollable'"
           @done="closeModal()"
         >

@@ -1,11 +1,13 @@
 from django.http.response import HttpResponseBadRequest, HttpResponseForbidden
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 import json
 
 from apps.various.service.tests_rpc_service import get_all_cars, get_car_byId, create_Car, delete_Car, change_Car
 from playarea.utils.Helper import Helper
+from playarea.utils.decorators import set_base_context
 from apps.various.models import Car
 
 from typing import Dict, Union, Any
@@ -100,4 +102,10 @@ def test_rpc_1_create(request):
         createdCar: Car = create_Car(data)
         return JsonResponse(createdCar.serialize(), safe=False, status=201)
 
-    return JsonResponse({'stauts': 401, 'message': 'Bad Request'}, status=400)
+    return JsonResponse({'stauts': 401, 'message': 'Bad Request'}, status=401)
+
+
+@login_required
+@set_base_context
+def css_swipe_animation(request, context):
+    return render(request, 'css-swipe-animation.html', context)

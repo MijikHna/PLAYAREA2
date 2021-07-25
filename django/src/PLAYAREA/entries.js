@@ -17,6 +17,10 @@ const entries = {
   'apps/various': './apps/various/static/main.js',
   'apps/various/pure-js-component-main':
     './apps/various/static/js/pure-js-component-main.js',
+  'apps/various/css-swipe-animation-main':
+    './apps/various/static/js/css-swipe-animation-main.js',
+  // excel-clonse
+  'apps/excel-clone': './apps/excel_clone/static/main.js',
 };
 
 module.exports = entries;

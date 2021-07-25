@@ -11,5 +11,6 @@ urlpatterns = [
     path('test-rpc-1/all/', views.test_rpc_1_all, name='test-rpc-1-all'),
     path('test-rpc-1/<int:id>/', views.test_rpc_1_with_id,
          name='test-rpc-1-with-id'),
-    path('test-rpc-1/create/', views.test_rpc_1_create, name='test-rpc-1-create')
+    path('test-rpc-1/create/', views.test_rpc_1_create, name='test-rpc-1-create'),
+    path('css-swipe-animation/', views.css_swipe_animation, name='css-swipe-animation'),
 ]
