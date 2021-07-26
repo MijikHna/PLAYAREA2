@@ -3,16 +3,19 @@ from django.contrib.auth.models import User
 
 from typing import Dict, Any
 
-from django.db.models.fields.related import ForeignKey
 # Create your models here.
 
 
 class Table(models.Model):
-    name = models.CharField(max_length=220)
+    name = models.CharField(max_length=220, unique=True)
     modified = models.DateTimeField()
-    rows = models.ManyToManyField('Row')
-    columns = models.ManyToManyField('Column')
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        null=False,
+        blank=True
+    )
 
     def __str__(self) -> str:
         return self.name
@@ -22,14 +25,19 @@ class Table(models.Model):
             'id': self.id,
             'name': self.name,
             'modified': self.modified,
-            'rows': list(map(lambda x: x.serialize(), self.rows.all())),
-            'columns': list(map(lambda x: x.serialize(), self.columns.all()))
+            'rows': list(map(lambda x: x.serialize(), self.row_set.all())),
+            'columns': list(map(lambda x: x.serialize(), self.column_set.all())),
+            'cells': list(map(lambda x: x.serialize(), self.cell_set.all()))
         }
 
 
 class Row(models.Model):
     number = models.IntegerField()
-    cells = models.ManyToManyField('Cell')
+    table = models.ForeignKey(
+        Table,
+        null=False,
+        on_delete=models.CASCADE
+    )
 
     def __str__(self) -> str:
         return str(self.number)
@@ -38,13 +46,18 @@ class Row(models.Model):
         return {
             'id': self.id,
             'number': self.number,
-            'cells': list(map(lambda x: x.serialize(), self.cells.all()))
+            'table': self.table.id,
+            'cells': list(map(lambda x: x.serialize(), self.cell_set.all()))
         }
 
 
 class Column(models.Model):
     notation = models.CharField(max_length=4)
-    cells = models.ManyToManyField('Cell')
+    table = models.ForeignKey(
+        Table,
+        null=False,
+        on_delete=models.CASCADE
+    )
 
     def __str__(self) -> str:
         return self.notation
@@ -53,13 +66,29 @@ class Column(models.Model):
         return {
             'id': self.id,
             'notation': self.notation,
-            'cells': list(map(lambda x: x.serialize(), self.cells.all()))
+            'table': self.table.id,
+            'cells': list(map(lambda x: x.serialize(), self.cell_set.all()))
         }
 
 
 class Cell(models.Model):
     content = models.TextField()
     modified = models.DateTimeField()
+    table = models.ForeignKey(
+        Table,
+        null=False,
+        on_delete=models.CASCADE
+    )
+    row = models.ForeignKey(
+        Row,
+        null=False,
+        on_delete=models.CASCADE
+    )
+    column = models.ForeignKey(
+        Column,
+        null=False,
+        on_delete=models.CASCADE
+    )
 
     def __str__(self) -> str:
         return self.content

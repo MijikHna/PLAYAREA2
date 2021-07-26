@@ -3,6 +3,8 @@ from .models import Table, Row, Column, Cell
 import json
 from datetime import datetime
 
+from django.contrib.auth.models import User
+
 from django.http.response import JsonResponse
 from django.shortcuts import render
 
@@ -29,58 +31,53 @@ def excel_clone(request):
 
 
 def new_table(request):
-    if request.user_is_authenticated:
+    if request.user.is_authenticated:
         if request.method == 'POST':
             req_data: Dict(str, str) = json.loads(request.body.decode('utf-8'))
 
             table_name = req_data['tableName']
 
+            modifiedTime: datetime = datetime.now()
+
+            # create table
             table: Table = Table.objects.create(
                 name=table_name,
-                modified=datetime.now(),
+                modified=modifiedTime,
                 user=request.user
             )
 
-            cells: List[Cell] = []
-            for i in range(10):
-                row: Row = Row.objects.create(
-                    number=j,
-                    table=table,
+            # create rows
+            for i in range(1, 11):
+                row: Row = table.row_set.create(
+                    number=i,
                 )
-                row_cells: List[Cell] = []
-                for j in range(10):
-                    column: Column = Column.object.get(pk=chr(ord('A') + i))
-                    if column is None:
-                        column = Column.objects.create(
-                            notation=chr(ord('A') + i),
-                            table=table
-                        )
-                    cell: Cell = Cell.objects.create(
-                        content='',
-                        modified=datetime.now(),
+
+            # create columns
+            for i in range(0, 10):
+                column: Column = table.column_set.create(
+                    notation=chr(ord('A') + i),
+                )
+
+            rows: List[Row] = table.row_set.all()
+            columns: List[Column] = table.column_set.all()
+
+            for row in rows:
+                for column in columns:
+                    cell: Cell = table.cell_set.create(
+                        content=f'{row.number}{column.notation}',
+                        modified=modifiedTime,
                         row=row,
                         column=column
                     )
 
-                    row_cells.append(cell)
+                    column.cell_set.add(cell)
+                    row.cell_set.add(cell)
 
-                    column.cells.add(cell)
-                    column.save()
+            # columns.save()
+            # rows.save()
+            table_serialized = table.serialize()
 
-                    table.columns.add(column)
-                    table.save()
-
-                cells.append(row_cells)
-
-                row.cells.add(row_cells)
-                row.save()
-
-                table.rows.add(row)
-                table.save()
-
-                # serialize table
-
-            return JsonResponse()
+            return JsonResponse(table_serialized, safe=False, status=201)
 
         else:
             return JsonResponse({'status': 401, 'message': 'Bad Request'}, status=400)
@@ -89,8 +86,30 @@ def new_table(request):
         return JsonResponse({'status': 403, 'message': 'Bad Request'}, status=403)
 
 
+def get_tables(request):
+    if request.user.is_authenticated:
+        if request.method == 'GET':
+            tables: List[Table] = Table.objects.filter(user=request.user.id)
+            tables_serialized = [
+                {'tableName': table.name, 'id': table.id} for table in tables
+            ]
+            return JsonResponse(tables_serialized, safe=False, status=200)
+        else:
+            return JsonResponse({'status': 401, 'message': 'Bad Request'}, status=400)
+    else:
+        return JsonResponse({'status': 403, 'message': 'Bad Request'}, status=403)
+
+
 def open_table(request, id):
-    pass
+    if request.user.is_authenticated:
+        if request.method == 'GET':
+            table: Table = Table.objects.get(id=id)
+
+            return JsonResponse(table.serialize(), safe=False, status=200)
+        else:
+            return JsonResponse({'status': 401, 'message': 'Bad Request'}, status=400)
+    else:
+        return JsonResponse({'status': 403, 'message': 'Bad Request'}, status=403)
 
 
 def save_table(request, id):

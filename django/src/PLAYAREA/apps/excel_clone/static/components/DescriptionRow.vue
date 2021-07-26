@@ -1,12 +1,17 @@
 <template>
-  <v-row>
-    <IndexCell :cellDesc="''" :initCellWidth="25"></IndexCell>
+  <v-row class="d-table-row">
+    <IndexCell
+      :cellDesc="''"
+      :initCellWidth="25"
+      class="d-table-cell"
+    ></IndexCell>
 
     <IndexCell
       v-for="(column, index) in columns"
       :key="index"
       :cellDesc="column.notation"
       :initCellWidth="100"
+      class="d-table-cell"
     >
       {{ column.notation }}
     </IndexCell>

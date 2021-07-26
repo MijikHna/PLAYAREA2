@@ -13,6 +13,7 @@
 
     <v-list>
       <NewButton></NewButton>
+      <OpenButton></OpenButton>
       <SaveButton></SaveButton>
       <DeleteButton></DeleteButton>
       <CloseButton></CloseButton>
@@ -22,12 +23,13 @@
 
 <script>
 import NewButton from "./MenuFile/NewButton.vue";
+import OpenButton from "./MenuFile/OpenButton.vue";
 import SaveButton from "./MenuFile/SaveButton.vue";
 import DeleteButton from "./MenuFile/DeleteButton.vue";
 import CloseButton from "./MenuFile/CloseButton.vue";
 export default {
   name: "MenuFile",
-  components: { NewButton, SaveButton, DeleteButton, CloseButton },
+  components: { NewButton, OpenButton, SaveButton, DeleteButton, CloseButton },
   data: () => {
     return {
       btnName: "File",

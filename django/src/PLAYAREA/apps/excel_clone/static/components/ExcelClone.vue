@@ -25,8 +25,6 @@ import Table from "./Table.vue";
 import ContextMenu from "./ContextMenu.vue";
 import ModalSimple from "./ModalSimple.vue";
 
-import table from "../fakeTable.js";
-
 export default {
   name: "ExcelClone",
   components: {
@@ -37,9 +35,12 @@ export default {
     ModalSimple,
   },
   data: () => {
-    return {
-      tableName: table.name,
-    };
+    return {};
+  },
+  computed: {
+    tableName() {
+      return this.$store.getters.tableName;
+    },
   },
 };
 </script>

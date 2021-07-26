@@ -22,41 +22,51 @@
 
 <script>
 import axios from "axios";
+import ExcelCloneEventBus from "../../../js/excelClone-EventBus.js";
 
-axios.defaults.xsrfCookieName = "XSRF-TOKEN";
+axios.defaults.xsrfCookieName = "csrftoken";
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
+
 export default {
   name: "NewButton",
   data: () => {
     return {
+      tableName: "",
       btnName: "New",
       showModalContent: false,
-      tableName: "",
       rules: [(v) => v.length <= 25 || "Max 25 characters"],
     };
   },
   methods: {
     askTableName() {
-      globalThis.excelClone.$children[0].$refs["modal-simple"].$refs[
-        "modal-simple-title"
-      ].append(this.$refs["modal-title"]);
-      globalThis.excelClone.$children[0].$refs["modal-simple"].$refs[
-        "modal-simple-body"
-      ].append(this.$refs["modal-body"]);
-      globalThis.excelClone.$children[0].$refs[
-        "modal-simple"
-      ].confirmationFunction = this.createNewTable;
-      globalThis.excelClone.$children[0].$refs["modal-simple"].declineFunction =
-        this.clearInput;
+      const globalModalElem =
+        globalThis.excelClone.$children[0].$refs["modal-simple"];
+      globalModalElem.$refs["modal-simple-title"].append(
+        this.$refs["modal-title"]
+      );
+      globalModalElem.$refs["modal-simple-body"].append(
+        this.$refs["modal-body"]
+      );
 
-      globalThis.excelClone.$children[0].$refs[
-        "modal-simple"
-      ].showDialog = true;
+      ExcelCloneEventBus.$on("close", (data) => {
+        if (data) {
+          this.createNewTable();
+        }
+        ExcelCloneEventBus.$off("close");
 
+        globalModalElem.$refs["modal-simple-title"].children[0].remove();
+        globalModalElem.$refs["modal-simple-body"].children[0].remove();
+
+        this.tableName = "";
+      });
+
+      globalModalElem.showDialog = true;
       this.showModalContent = true;
     },
     async createNewTable() {
+      let response = null;
       try {
-        const response = await axios({
+        response = await axios({
           method: "post",
           url: `/apps/excel-clone/new/`,
           data: {
@@ -64,20 +74,19 @@ export default {
           },
         });
       } catch (e) {
-        // Error in der Message-Queue printen
         globalThis.notifier.$children[0].$refs.notifierWrapper.addNotifier(
           "Excel Clone",
           `Create New Table: ${e.message}`,
           e.name.toLowerCase()
         );
-        this.tableName = "";
+
+        this.$store.commit("setTable", null);
+
         return;
       }
 
-      if (response.status === 200 || response.status === 201) {
-        console.log("OK");
-      } else {
-        console.log("OK");
+      if (response.status === 201) {
+        this.$store.commit("setTable", response.data);
       }
 
       this.tableName = "";
