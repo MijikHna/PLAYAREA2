@@ -7,16 +7,6 @@
     <div ref="modal-title" v-show="showModalContent">
       <div class="text-h4">Open table</div>
     </div>
-    <div ref="modal-body" v-show="showModalContent">
-      <v-select
-        v-model="selectedTable"
-        :hint="'Choose a table'"
-        :items="tables"
-        item-text="tableName"
-        item-value="id"
-        label="Choose a table"
-      ></v-select>
-    </div>
   </div>
 </template>
 
@@ -31,11 +21,11 @@ export default {
   name: "OpenButton",
   data: () => {
     return {
-      selectedTable: null,
-      tables: [],
       btnName: "Open",
+
+      selectedTableId: null,
+
       showModalContent: false,
-      rules: [(v) => v.length <= 25 || "Max 25 characters"],
     };
   },
   methods: {
@@ -55,30 +45,34 @@ export default {
       }
 
       if (response.status === 200) {
-        this.tables = response.data;
-
-        const globalModalElem =
-          globalThis.excelClone.$children[0].$refs["modal-simple"];
-        globalModalElem.$refs["modal-simple-title"].append(
-          this.$refs["modal-title"]
-        );
-        globalModalElem.$refs["modal-simple-body"].append(
-          this.$refs["modal-body"]
-        );
-
         ExcelCloneEventBus.$on("close", (data) => {
           if (data) {
             this.openTable();
           }
           ExcelCloneEventBus.$off("close");
-          globalModalElem.$refs["modal-simple-title"].children[0].remove();
-          globalModalElem.$refs["modal-simple-body"].children[0].remove();
 
-          this.tableName = "";
+          globalModalElem.$refs["modal-simple-title"].children[0].remove();
+          globalModalElem.currentComponent = "";
+          globalModalElem.currentComponentProps = null;
         });
+
+        ExcelCloneEventBus.$on("selectedTableName", (data) => {
+          this.selectedTableId = data;
+        });
+
+        const globalModalElem =
+          globalThis.excelClone.$children[0].$refs["modal-simple"];
 
         globalModalElem.showDialog = true;
         this.showModalContent = true;
+
+        globalModalElem.$refs["modal-simple-title"].append(
+          this.$refs["modal-title"]
+        );
+        globalModalElem.currentComponent = "OpenTable";
+        globalModalElem.currentComponentProps = {
+          tables: response.data,
+        };
       }
     },
     async openTable() {
@@ -86,7 +80,7 @@ export default {
       try {
         response = await axios({
           method: "get",
-          url: `/apps/excel-clone/open/${this.selectedTable}`,
+          url: `/apps/excel-clone/open/${this.selectedTableId}`,
         });
       } catch (e) {
         globalThis.notifier.$children[0].$refs.notifierWrapper.addNotifier(
@@ -94,9 +88,7 @@ export default {
           `Open table: ${e.message}`,
           e.name.toLowerCase()
         );
-
         this.$store.commit("setTable", null);
-
         return;
       }
 
@@ -104,10 +96,7 @@ export default {
         this.$store.commit("setTable", response.data);
       }
 
-      this.tableName = "";
-    },
-    clearInput() {
-      this.tableName = "";
+      this.selectedTableId = null;
     },
   },
 };

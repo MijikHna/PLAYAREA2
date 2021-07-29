@@ -27,7 +27,7 @@ class Table(models.Model):
             'modified': self.modified,
             'rows': list(map(lambda x: x.serialize(), self.row_set.all())),
             'columns': list(map(lambda x: x.serialize(), self.column_set.all())),
-            'cells': list(map(lambda x: x.serialize(), self.cell_set.all()))
+            'cells': list(map(lambda x: x.serialize(), self.cell_set.all().order_by('row', 'column')))
         }
 
 
@@ -47,7 +47,7 @@ class Row(models.Model):
             'id': self.id,
             'number': self.number,
             'table': self.table.id,
-            'cells': list(map(lambda x: x.serialize(), self.cell_set.all()))
+            'cells': list(map(lambda x: x.serialize(), self.cell_set.all().order_by('row', 'column')))
         }
 
 
@@ -67,7 +67,7 @@ class Column(models.Model):
             'id': self.id,
             'notation': self.notation,
             'table': self.table.id,
-            'cells': list(map(lambda x: x.serialize(), self.cell_set.all()))
+            'cells': list(map(lambda x: x.serialize(), self.cell_set.all().order_by('row', 'column')))
         }
 
 

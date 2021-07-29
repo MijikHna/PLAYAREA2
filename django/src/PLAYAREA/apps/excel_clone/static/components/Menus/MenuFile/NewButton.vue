@@ -1,21 +1,11 @@
 <template>
   <div>
     <v-list-item link>
-      <v-list-item-title @click="askTableName">{{ btnName }}</v-list-item-title>
+      <v-list-item-title @click="openModal">{{ btnName }}</v-list-item-title>
     </v-list-item>
 
     <div ref="modal-title" v-show="showModalContent">
       <div class="text-h4">Table name</div>
-    </div>
-    <div ref="modal-body" v-show="showModalContent">
-      <v-text-field
-        v-model="tableName"
-        :rules="rules"
-        counter="25"
-        hint="Enter the name of the new table"
-        label="Table name"
-      >
-      </v-text-field>
     </div>
   </div>
 </template>
@@ -31,37 +21,42 @@ export default {
   name: "NewButton",
   data: () => {
     return {
-      tableName: "",
       btnName: "New",
+      tableName: null,
+
       showModalContent: false,
-      rules: [(v) => v.length <= 25 || "Max 25 characters"],
     };
   },
   methods: {
-    askTableName() {
-      const globalModalElem =
-        globalThis.excelClone.$children[0].$refs["modal-simple"];
-      globalModalElem.$refs["modal-simple-title"].append(
-        this.$refs["modal-title"]
-      );
-      globalModalElem.$refs["modal-simple-body"].append(
-        this.$refs["modal-body"]
-      );
-
+    openModal() {
       ExcelCloneEventBus.$on("close", (data) => {
         if (data) {
           this.createNewTable();
         }
         ExcelCloneEventBus.$off("close");
-
-        globalModalElem.$refs["modal-simple-title"].children[0].remove();
-        globalModalElem.$refs["modal-simple-body"].children[0].remove();
+        ExcelCloneEventBus.$off("choosenTableName");
 
         this.tableName = "";
+        this.showModalContent = false;
+
+        globalModalElem.$refs["modal-simple-title"].children[0].remove();
+        globalModalElem.currentComponent = "";
       });
+
+      ExcelCloneEventBus.$on("choosenTableName", (data) => {
+        this.tableName = data;
+      });
+
+      const globalModalElem =
+        globalThis.excelClone.$children[0].$refs["modal-simple"];
 
       globalModalElem.showDialog = true;
       this.showModalContent = true;
+
+      globalModalElem.$refs["modal-simple-title"].append(
+        this.$refs["modal-title"]
+      );
+      globalModalElem.currentComponent = "NewTable";
     },
     async createNewTable() {
       let response = null;
@@ -88,11 +83,6 @@ export default {
       if (response.status === 201) {
         this.$store.commit("setTable", response.data);
       }
-
-      this.tableName = "";
-    },
-    clearInput() {
-      this.tableName = "";
     },
   },
 };

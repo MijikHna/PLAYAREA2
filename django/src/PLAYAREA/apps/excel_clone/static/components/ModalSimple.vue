@@ -9,15 +9,15 @@
   >
     <v-card>
       <v-card-title class="text-h5 grey lighten-2">
-        <div id="modal-simple-title" ref="modal-simple-title">
-          <slot name="title" ref="modal-title"></slot>
-        </div>
+        <div id="modal-simple-title" ref="modal-simple-title"></div>
+        <slot name="modalTitle"></slot>
       </v-card-title>
 
       <v-card-text>
-        <div id="modal-simple-body" ref="modal-simple-body">
-          <slot name="modalBody"></slot>
-        </div>
+        <component
+          :is="currentComponent"
+          v-bind="currentComponentProps"
+        ></component>
       </v-card-text>
 
       <v-divider></v-divider>
@@ -36,12 +36,17 @@ import ExcelCloneEventBus from "../js/excelClone-EventBus.js";
 
 export default {
   name: "ModalSimple",
+  components: {
+    "NewTable": () => import("./ModalContent/NewTable.vue"),
+    "OpenTable": () => import("./ModalContent/OpenTable.vue"),
+  },
   data: () => {
     return {
       showDialog: false,
+      currentComponent: "",
+      currentComponentProps: null,
     };
   },
-  props: {},
   methods: {
     decline() {
       this.showDialog = false;
