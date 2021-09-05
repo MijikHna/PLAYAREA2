@@ -18,6 +18,7 @@ from django.urls import path, include, re_path
 
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.i18n import JavaScriptCatalog
 
 urlpatterns = [
     # admin
@@ -26,6 +27,8 @@ urlpatterns = [
     re_path(r'^index/|^home/|^main/|', include('main.urls')),
     # apps
     path('apps/', include('apps.urls')),
+    path('i18n/', include('django.conf.urls.i18n')),
+    path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
 ]
 
 

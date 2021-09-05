@@ -3,8 +3,8 @@
     v-model="tableName"
     :rules="rules"
     counter="25"
-    hint="Enter the name of the new table"
-    label="Table name"
+    :hint="djangoTrans.hint"
+    :label="djangoTrans.label"
     @input="choosenTableName"
   >
   </v-text-field>
@@ -23,6 +23,10 @@ export default {
     return {
       tableName: "",
       rules: [(v) => v.length <= 25 || "Max 25 characters"],
+      djangoTrans: {
+        hint: gettext("Enter the name of the new table"),
+        label: gettext("Table name"),
+      },
     };
   },
   props: {

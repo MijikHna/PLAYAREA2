@@ -1,85 +1,78 @@
 {% extends "BASE.html" %}
-<!-- no-prettier -->
 {% load static %}
 
-<!-- no-prettier -->
 {% block head %} {% endblock head %}
 
-<!-- no-prettier -->
 {% block navigation %}
-<!-- no-prettier -->
-{% include "header.html" %}
-<!-- no-prettier -->
+  {% include "header.html" %}
 {% endblock navigation %}
 
-<!-- no-prettier -->
 {% block content %}
-<div class="container mt-5">
-  <div class="row">
-    <div class="col text-center">
-      <form class="mt-5" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next }}">
-        <div class="form-group row">
-          <label
-            for="{{form.username.id_for_label}}"
-            class="col-md-3 col-12 text-left"
-          >
-            {{ form.username.label }}
-          </label>
-          <div class="col-md-9 col-12">
-            {{ form.username }}
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col text-center">
+        <form class="mt-5" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ next }}">
+          <div class="form-group row">
+            <label
+              for="{{form.username.id_for_label}}"
+              class="col-md-3 col-12 text-left"
+            >
+              {{ form.username.label }}
+            </label>
+            <div class="col-md-9 col-12">
+              {{ form.username }}
+            </div>
+            <div class="help-text offset-md-3 col-md-9 col-12 text-muted">
+              <small>
+                {{ form.username.help_text }}
+              </small>
+            </div>
           </div>
-          <div class="help-text offset-md-3 col-md-9 col-12 text-muted">
-            <small>
-              {{ form.username.help_text }}
-            </small>
+          <div class="form-group row">
+            <label
+              for="{{form.password1.id_for_label}}"
+              class="col-md-3 col-12 text-left"
+              >{{ form.password1.label }}</label
+            >
+            <div class="col-md-9 col-12">
+              {{ form.password1 }}
+            </div>
+            <div class="help-text offset-md-3 col-md-9 col-12 text-muted">
+              <small>
+                {{ form.password1.help_text }}
+              </small>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label
-            for="{{form.password1.id_for_label}}"
-            class="col-md-3 col-12 text-left"
-            >{{ form.password1.label }}</label
-          >
-          <div class="col-md-9 col-12">
-            {{ form.password1 }}
+          <div class="form-group row">
+            <label
+              for="{{form.password2.id_for_label}}"
+              class="col-md-3 col-12 text-left"
+              >{{ form.password2.label }}</label
+            >
+            <div class="col-md-9 col-12">
+              {{ form.password2 }}
+            </div>
+            <div class="help-text offset-md-3 col-md-9 col-12 text-muted">
+              <small>
+                {{ form.password2.help_text }}
+              </small>
+            </div>
           </div>
-          <div class="help-text offset-md-3 col-md-9 col-12 text-muted">
-            <small>
-              {{ form.password1.help_text }}
-            </small>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label
-            for="{{form.password2.id_for_label}}"
-            class="col-md-3 col-12 text-left"
-            >{{ form.password2.label }}</label
-          >
-          <div class="col-md-9 col-12">
-            {{ form.password2 }}
-          </div>
-          <div class="help-text offset-md-3 col-md-9 col-12 text-muted">
-            <small>
-              {{ form.password2.help_text }}
-            </small>
-          </div>
-        </div>
-        <input class="btn btn-info" type="submit" value="Login" />
-        <ul class="messages mt-2">
-          {% for message in messages %}
-          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-              {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
-              {{ message }}
-          </li>
-          {% endfor %}
-        </ul>
-      </form>
+          <input class="btn btn-info" type="submit" value="Login" />
+          <ul class="messages mt-2">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                {{ message }}
+            </li>
+            {% endfor %}
+          </ul>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 {% endblock content %}
 
-<!-- no-prettier -->
 {% block footer %} {% endblock footer %}

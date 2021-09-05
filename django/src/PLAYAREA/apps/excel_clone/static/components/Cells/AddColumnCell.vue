@@ -2,27 +2,18 @@
   <v-sheet
     color="grey lighten-1"
     elevation="1"
-    :height="cellHeight"
-    :width="cellWidth"
+    :max-height="cellHeight - 1"
+    :max-width="cellWidth - 1"
   >
-    <div class="d-flex border">
+    <div class="">
       <slot>
         <v-tooltip bottom>
           <template v-slot:activator="{ attrs, on }">
-            <v-btn
-              icon
-              small
-              tile
-              v-bind="attrs"
-              v-on="on"
-              :width="cellWidth - 1"
-              :height="cellHeight - 1"
-              class="align-center justify-center"
-            >
+            <span v-bind="attrs" v-on="on" class="align-center justify-center">
               <v-icon>mdi-plus-box</v-icon>
-            </v-btn>
+            </span>
           </template>
-          <span>Add new column</span>
+          <span>{{ djangoTrans.tooltip }}</span>
         </v-tooltip>
       </slot>
     </div>
@@ -36,10 +27,12 @@ export default {
     return {
       cellHeight: 25,
       cellWidth: 25,
+      djangoTrans: {
+        tooltip: gettext("Add new column"),
+      },
     };
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>

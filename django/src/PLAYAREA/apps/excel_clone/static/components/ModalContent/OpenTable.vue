@@ -1,11 +1,11 @@
 <template>
   <v-select
     v-model="selectedTable"
-    :hint="'Choose a table'"
+    :hint="djangoTrans.hint"
     :items="tables"
     item-text="tableName"
     item-value="id"
-    label="Choose a table"
+    :label="djangoTrans.label"
     @input="transferSelectedTableName"
   ></v-select>
 </template>
@@ -17,6 +17,10 @@ export default {
   data: () => {
     return {
       selectedTable: null,
+      djangoTrans: {
+        hint: gettext("Choose a table"),
+        label: gettext("Choose a table"),
+      },
     };
   },
   props: {

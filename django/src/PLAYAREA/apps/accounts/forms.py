@@ -1,7 +1,10 @@
 from .models import Profile
 from django.contrib.auth.models import User
 
-from django.forms import ModelForm, Textarea, FileInput, TextInput, widgets
+from django.utils.translation import gettext
+from django.conf import settings
+
+from django.forms import ModelForm, Textarea, FileInput, Select, TextInput, widgets
 
 from django.contrib.auth.forms import PasswordChangeForm, AuthenticationForm, UserChangeForm, UserCreationForm
 
@@ -11,7 +14,7 @@ class PasswordChangeCustomForm(PasswordChangeForm):
         super(PasswordChangeCustomForm, self).__init__(user, *args, **kwargs)
 
         self.fields['old_password'].widget.attrs.update(
-            {'class': 'form-control'})
+            {'class': 'form-control', 'autofocus': False})
         self.fields['new_password1'].widget.attrs.update(
             {'class': 'form-control'})
         self.fields['new_password2'].widget.attrs.update(
@@ -39,26 +42,33 @@ class UserCreationCustomForm(UserCreationForm):
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['bio', 'picture']
-        label = {'bio': 'Bio', 'picture': 'Picture'}
+        fields = ['bio', 'picture', 'language']
+        label = {
+            'bio': gettext('Bio'),
+            'picture': gettext('Picture'),
+            'language': gettext('Language'),
+        }
 
         widgets = {
             'bio': Textarea(attrs={'class': 'form-control'}),
-            'picture': FileInput(attrs={'class': 'custom-file-input'})
+            'picture': FileInput(attrs={'class': 'custom-file-input'}),
+            'language': Select(attrs={'class': 'form-control'}, choices=settings.LANGUAGES)
         }
         help_texts = {
-            # 'bio': _('Information about you'),
-            # 'picture': _('Your picture'),
-            'bio': 'Information about you',
-            'picture': 'Your picture',
+            'bio': gettext('Information about you'),
+            'picture': gettext('Your picture'),
+            'language': gettext('Your Language'),
         }
         error_messages = {
             'bio': {
-                'error_1': 'test bio',
+                'error_1': gettext('test bio'),
             },
             'picture': {
-                'error_1': 'test picture'
-            }
+                'error_1': gettext('test picture'),
+            },
+            'language': {
+                'error_1': gettext('test language'),
+            },
         }
 
     def __init__(self, *args, **kwargs):

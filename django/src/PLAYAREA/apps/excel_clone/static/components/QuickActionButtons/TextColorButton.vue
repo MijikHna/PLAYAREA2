@@ -5,13 +5,20 @@
         <v-icon>mdi-format-color-text</v-icon>
       </v-btn>
     </template>
-    <span>Text color</span>
+    <span>{{ djangoTrans.tooltip }}</span>
   </v-tooltip>
 </template>
 
 <script>
 export default {
   name: "TextColorButton",
+  data: () => {
+    return {
+      djangoTrans: {
+        tooltip: gettext("Text color"),
+      },
+    };
+  },
 };
 </script>
 

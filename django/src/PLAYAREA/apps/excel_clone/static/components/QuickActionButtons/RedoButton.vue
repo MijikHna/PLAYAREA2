@@ -5,13 +5,20 @@
         <v-icon>mdi-redo</v-icon>
       </v-btn>
     </template>
-    <span>Redo</span>
+    <span>{{ djangoTrans.tooltip }}</span>
   </v-tooltip>
 </template>
 
 <script>
 export default {
   name: "RedoButton",
+  data: () => {
+    return {
+      djangoTrans: {
+        tooltip: gettext("Redo"),
+      },
+    };
+  },
 };
 </script>
 

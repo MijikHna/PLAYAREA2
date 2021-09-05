@@ -1,25 +1,26 @@
 {% extends "BASE.html" %}
-<!-- no-prettier -->
 {% load static %}
 
-<!-- no-prettier -->
 {% block head %}
-<script src="{% static 'apps/excel-clone.bundle.js' %}"></script>
+  <script src="{% static 'apps/excel-clone.bundle.js' %}"></script>
 {% endblock head %}
 
-<!-- no-prettier -->
 {% block navigation %}
-<!-- no-prettier -->
-{% include "header.html" %}
-<!-- no-prettier -->
+  {% include "header.html" %}
 {% endblock navigation %}
 
-<!-- no-prettier -->
 {% block content %}
-<div id="excel-clone"></div>
-
-<!-- <div id="context-menu"></div> -->
+  <div id="excel-clone"></div>
 {% endblock content %}
 
-<!-- no-prettier -->
 {% block footer %} {% endblock footer %}
+
+{% block js %}
+  {% if js %}
+    <script type="text/javascript">
+      '{% if js.table %}'
+      window.table = JSON.parse('{{ js.table|safe|escapejs }}');
+      '{% endif %}'
+    </script>
+  {% endif %}
+{% endblock %}

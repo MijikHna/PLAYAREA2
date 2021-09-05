@@ -1,11 +1,13 @@
 <template>
   <div>
     <v-list-item link>
-      <v-list-item-title @click="getTables">{{ btnName }}</v-list-item-title>
+      <v-list-item-title @click="getTables">{{
+        djangoTrans.btnName
+      }}</v-list-item-title>
     </v-list-item>
 
     <div ref="modal-title" v-show="showModalContent">
-      <div class="text-h4">Open table</div>
+      <div class="text-h4">{{ djangoTrans.headerName }}</div>
     </div>
   </div>
 </template>
@@ -21,13 +23,20 @@ export default {
   name: "OpenButton",
   data: () => {
     return {
-      btnName: "Open",
-
       selectedTableId: null,
-
       showModalContent: false,
+
+      djangoTrans: {
+        btnName: gettext("Open"),
+        headerName: gettext("Open table"),
+      },
     };
   },
+  // computed: {
+  //   selectedTableId() {
+  //     return this.$store.getters.tableId;
+  //   },
+  // }
   methods: {
     async getTables() {
       let response = null;
@@ -76,25 +85,7 @@ export default {
       }
     },
     async openTable() {
-      let response = null;
-      try {
-        response = await axios({
-          method: "get",
-          url: `/apps/excel-clone/open/${this.selectedTableId}`,
-        });
-      } catch (e) {
-        globalThis.notifier.$children[0].$refs.notifierWrapper.addNotifier(
-          "Excel Clone",
-          `Open table: ${e.message}`,
-          e.name.toLowerCase()
-        );
-        this.$store.commit("setTable", null);
-        return;
-      }
-
-      if (response.status === 200) {
-        this.$store.commit("setTable", response.data);
-      }
+      window.location.href = `/apps/excel-clone/${this.selectedTableId}`;
 
       this.selectedTableId = null;
     },

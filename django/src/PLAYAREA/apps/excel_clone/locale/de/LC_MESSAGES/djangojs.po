@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-10 15:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:6
+msgid "Add new column"
+msgstr "Neue Spalte hinzufügen"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:8
+msgid "Add new row"
+msgstr "Neue Zeile hinzufügen"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:10
+msgid "Close"
+msgstr "Schließen"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:12
+msgid "Delete"
+msgstr "Löschen"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:14
+msgid "New"
+msgstr "Neu"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:15
+#: apps/excel_clone/static/js/djanoTranslations.js:36
+msgid "Table name"
+msgstr "Tabellenname"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:16
+msgid "Table will be created"
+msgstr "Tabelle wird erstellt"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:18
+msgid "Open"
+msgstr "Öffnen"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:19
+msgid "Open table"
+msgstr "Tabelle öffnen"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:21
+msgid "Save"
+msgstr "Speichern"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:23
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:25
+msgid "File"
+msgstr "Datei"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:27
+msgid "Format"
+msgstr "Format"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:29
+msgid "Help"
+msgstr "Hilfe"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:31
+msgid "Insert"
+msgstr "Einfügen"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:33
+msgid "View"
+msgstr "Ansicht"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:35
+msgid "Enter the name of the new table"
+msgstr "Gib den Namen der neuen Tabelle ein"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:38
+#: apps/excel_clone/static/js/djanoTranslations.js:39
+msgid "Choose a table"
+msgstr "Wähle Tabelle aus"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:41
+msgid "Bold"
+msgstr "Fett"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:43
+msgid "Italic"
+msgstr "Kursiv"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:45
+msgid "Redo"
+msgstr "Vorwärts"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:47
+msgid "Strike through"
+msgstr "Durchstreichen"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:49
+msgid "Text color"
+msgstr "Textfarbe"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:51
+msgid "Undo"
+msgstr "Zurück"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:53
+msgid "Entry 1"
+msgstr "Eintrag 1"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:54
+msgid "Entry 2"
+msgstr "Eintrag 2"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:56
+msgid "Excel Clone:"
+msgstr "Excel Clone:"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:58
+msgid "Confirm"
+msgstr "Bestätigen"
+
+#: apps/excel_clone/static/js/djanoTranslations.js:59
+msgid "Decline"
+msgstr "Ablehnen"

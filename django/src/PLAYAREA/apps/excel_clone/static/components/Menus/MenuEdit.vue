@@ -7,7 +7,7 @@
   >
     <template v-slot:activator="{ attrs, on }">
       <v-btn v-bind="attrs" v-on="on" elevation="2" text small tile outlined>
-        {{ btnName }}
+        {{ djangoTrans.btnName }}
       </v-btn>
     </template>
 
@@ -20,8 +20,10 @@ export default {
   name: "MenuEdit",
   data: () => {
     return {
-      btnName: "Edit",
       closeOnClick: true,
+      djangoTrans: {
+        btnName: gettext("Edit"),
+      },
     };
   },
 };

@@ -18,7 +18,9 @@ def pure_js_component(request):
     if request.user.is_authenticated:
         context: Dict[str, Any] = {
             'title': 'Pure JS Component',
-            'apps': Helper.getAllApps()
+            'js': {
+                'apps': json.dumps(Helper.getAllApps(serialized=True)),
+            },
         }
         return render(request, 'pure-js-component.html', context)
     else:
@@ -30,7 +32,9 @@ def daterangepicker(request):
     if request.user.is_authenticated:
         context: Dict[str, Any] = {
             'title': 'Daterangepicker',
-            'apps': Helper.getAllApps()
+            'js': {
+                'apps': json.dumps(Helper.getAllApps(serialized=True)),
+            },
         }
         return render(request, 'daterangepicker.html', context)
     else:
@@ -42,7 +46,9 @@ def custom_html(request):
     if request.user.is_authenticated:
         context: Dict[str, Any] = {
             'title': 'Custom Html',
-            'apps': Helper.getAllApps()
+            'js': {
+                'apps': json.dumps(Helper.getAllApps(serialized=True)),
+            },
         }
         return render(request=request, template_name='custom-html.html', context=context)
     else:
@@ -54,7 +60,9 @@ def test_rpc_1(request):
     if request.user.is_authenticated:
         context: Dict[str, Any] = {
             'title': 'Test RPC 1',
-            'apps': Helper.getAllApps()
+            'js': {
+                'apps': json.dumps(Helper.getAllApps(serialized=True)),
+            },
         }
         return render(request, 'test-rpc-1.html', context)
     else:

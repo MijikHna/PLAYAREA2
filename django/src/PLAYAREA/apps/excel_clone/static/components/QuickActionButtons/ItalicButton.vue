@@ -5,13 +5,20 @@
         <v-icon>mdi-format-italic</v-icon>
       </v-btn>
     </template>
-    <span>Italic</span>
+    <span>{{ djangoTrans.tooltip }}</span>
   </v-tooltip>
 </template>
 
 <script>
 export default {
   name: "ItalicButton",
+  data: () => {
+    return {
+      djangoTrans: {
+        tooltip: gettext("Italic"),
+      },
+    };
+  },
 };
 </script>
 

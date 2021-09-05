@@ -1,0 +1,153 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-10 00:40+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/accounts/forms.py:47
+msgid "Bio"
+msgstr "Biographie"
+
+#: apps/accounts/forms.py:48
+msgid "Picture"
+msgstr "Bild"
+
+#: apps/accounts/forms.py:49
+msgid "Language"
+msgstr "Sprache"
+
+#: apps/accounts/forms.py:58
+msgid "Information about you"
+msgstr "Angabe zu dir"
+
+#: apps/accounts/forms.py:59
+msgid "Your picture"
+msgstr "Dein Bild"
+
+#: apps/accounts/forms.py:60
+msgid "Your Language"
+msgstr "Deine Sprache"
+
+#: apps/accounts/forms.py:64
+msgid "test bio"
+msgstr "Deine Biographie"
+
+#: apps/accounts/forms.py:67
+msgid "test picture"
+msgstr ""
+
+#: apps/accounts/forms.py:70
+msgid "test language"
+msgstr ""
+
+#: apps/accounts/models.py:10
+msgid "no bio ..."
+msgstr "Keine Bibliographie ..."
+
+#: apps/accounts/templates/dashboard.html:22 apps/accounts/views.py:20
+msgid "My Account"
+msgstr "Mein Konto"
+
+#: apps/accounts/templates/dashboard.html:34
+msgid "General"
+msgstr "Allgemein"
+
+#: apps/accounts/templates/dashboard.html:38 apps/accounts/views.py:96
+#: apps/accounts/views.py:103
+msgid "User"
+msgstr "Benutzer"
+
+#: apps/accounts/templates/dashboard.html:42
+msgid "Change profile"
+msgstr "Profil ändern"
+
+#: apps/accounts/templates/dashboard.html:46
+#: apps/accounts/templates/dashboard.html:144
+#: apps/accounts/templates/registration/custom-password-change.html:15
+msgid "Change password"
+msgstr "Kennwort ändern"
+
+#: apps/accounts/templates/dashboard.html:62
+msgid "Search"
+msgstr "Suchen"
+
+#: apps/accounts/templates/dashboard.html:71
+msgid "Change Username"
+msgstr "Benutzernamen ändern"
+
+#: apps/accounts/templates/dashboard.html:97
+#: apps/accounts/templates/dashboard.html:134
+#: apps/accounts/templates/dashboard.html:178
+msgid "Save"
+msgstr "Speichern"
+
+#: apps/accounts/templates/dashboard.html:107
+msgid "Change picture"
+msgstr "Bild ändern"
+
+#: apps/accounts/templates/registration/custom-login.html:15
+msgid "Login"
+msgstr "Einloggen"
+
+#: apps/accounts/templates/registration/custom-login.html:58
+msgid "Register"
+msgstr "Registrieren"
+
+#: apps/accounts/templates/registration/custom-password-change-done.html:15
+msgid "Password changed successful"
+msgstr "Kennwort erfolgreich geändert"
+
+#: apps/accounts/templates/registration/custom-password-change.html:61
+#: apps/accounts/templates/registration/custom-password-reset-done.html:16
+msgid "Back to dashboard"
+msgstr "Zurück zum Dashboard"
+
+#: apps/accounts/templates/registration/custom-password-reset-done.html:15
+msgid "Password Changed"
+msgstr "Kennwort geändert"
+
+#: apps/accounts/views.py:55 apps/accounts/views.py:62
+msgid "Profile"
+msgstr "Profil"
+
+#: apps/accounts/views.py:56
+msgid "Profile successfully changed"
+msgstr "Profil erfolgreich geändert"
+
+#: apps/accounts/views.py:63
+msgid "Profile not changed"
+msgstr "Profile nicht geändert"
+
+#: apps/accounts/views.py:76 apps/accounts/views.py:83
+msgid "Password"
+msgstr "Kennwort"
+
+#: apps/accounts/views.py:77
+msgid "Password successfully changed"
+msgstr "Kennwort erfolgreich geändert"
+
+#: apps/accounts/views.py:84
+msgid "Password not changed"
+msgstr "Kennwort nicht geändert"
+
+#: apps/accounts/views.py:97
+msgid "User successfully changed"
+msgstr "Benutzer erfolgreich geändert"
+
+#: apps/accounts/views.py:104
+msgid "User not changed"
+msgstr "Benutzer nicht geändert"

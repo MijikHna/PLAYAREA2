@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from django.utils.translation import gettext_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -52,6 +53,8 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     # Sessions des Requests managen
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # Translation support
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     # Users mit Request anhand der Sessions assozieren
@@ -108,6 +111,8 @@ DATABASES = {
     }
 }
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -143,6 +148,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
+LANGUAGES = [
+    ('en', gettext_lazy('English')),
+    ('de', gettext_lazy('German')),
+]
+
 TIME_ZONE = 'UTC'
 
 DATETIME_FORMAT = '%d-%m-%Y %H:%M:%S'
@@ -166,3 +176,14 @@ STATIC_ROOT = '/app/static_root/'
 MEDIA_URL = '/media/'
 # ODER:  MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# LOCALE_PATHS = [
+#     os.path.join('apps/accounts/locale'),
+#     os.path.join('apps/excel_clone/locale'),
+#     os.path.join('apps/karnevalsorden_editor/locale'),
+#     os.path.join('apps/threejs_tests/locale'),
+#     os.path.join('apps/various/locale'),
+#     os.path.join('apps/vue_tests/locale'),
+#     os.path.join('apps/vue_tests/locale'),
+#     os.path.join('main/locale'),
+# ]

@@ -16,4 +16,10 @@ $(() => {
       render: (h) => h(ExcelClone),
     });
   }
+
+  if (window?.table) {
+    excelClone.$store.commit('setTable', window.table);
+    delete window.table;
+    window['table'] = undefined;
+  }
 });

@@ -1,10 +1,11 @@
 import Vue from 'vue';
 import '../css/sidebar.scss';
 
-import NavLinkButton from '../components/NavLinkButton';
+import SideNav from '../components/SideNav.vue';
 import NotifierRoot from '@app/static/components/NotifierRoot';
 
-$(document).ready(function() {
+// $(document).ready(function() {
+$(() => {
   $('#sidebarCollapse').on('click', () => {
     toggleSideBar();
   });
@@ -12,11 +13,10 @@ $(document).ready(function() {
     toggleSideBar();
   });
 
-  const navLinkButtons = $('ul#sidebar-nav').children();
-  for (const navLinkButton of navLinkButtons) {
+  if ($('#vue-side-navigation').length) {
     new Vue({
-      el: navLinkButton,
-      render: (h) => h(NavLinkButton),
+      el: '#vue-side-navigation',
+      render: (h) => h(SideNav),
     });
   }
 
@@ -48,9 +48,9 @@ $(document).ready(function() {
   }
 });
 
-function toggleSideBar() {
+window.toggleSideBar = () => {
   $('#sidebar').toggleClass('active');
   $('#sidebarCollapse').toggleClass('d-none');
   $('#content nav').toggleClass('justify-content-between');
   $('#content nav').toggleClass('justify-content-end');
-}
+};

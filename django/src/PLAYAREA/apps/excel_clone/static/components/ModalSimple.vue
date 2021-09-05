@@ -24,8 +24,12 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="primary" text @click="confirm"> Confirm </v-btn>
-        <v-btn color="primary" text @click="decline"> Decline </v-btn>
+        <v-btn color="primary" text @click="confirm">
+          {{ djangoTrans.confirm }}
+        </v-btn>
+        <v-btn color="primary" text @click="decline">
+          {{ djangoTrans.decline }}
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -45,6 +49,10 @@ export default {
       showDialog: false,
       currentComponent: "",
       currentComponentProps: null,
+      djangoTrans: {
+        confirm: gettext("Confirm"),
+        decline: gettext("Decline"),
+      },
     };
   },
   methods: {

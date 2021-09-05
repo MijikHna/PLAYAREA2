@@ -2,11 +2,11 @@
   <v-sheet
     color="grey lighten-1"
     elevation="1"
-    :height="cellHeight"
-    :width="cellWidth"
+    :max-height="cellHeight"
+    :min-width="cellWidth"
   >
     <div class="border border-left-0 m-auto text-center">
-      <slot></slot>
+      {{ content }}
     </div>
   </v-sheet>
 </template>
@@ -16,7 +16,7 @@ export default {
   name: "IndexCell",
   data: () => {
     return {
-      cellHeight: 25,
+      cellHeight: null,
       cellWidth: null,
     };
   },
@@ -25,9 +25,26 @@ export default {
       Type: Number,
       required: true,
     },
+    initCellHeight: {
+      type: Number,
+      required: true,
+    },
+    content: {
+      type: String | Number,
+      default: "\xa0",
+    },
+    columns: {
+      type: Array,
+      default: null,
+    },
+    row: {
+      type: Array,
+      default: null,
+    },
   },
   mounted() {
     this.cellWidth = this.initCellWidth;
+    this.cellHeight = this.initCellHeight;
   },
 };
 </script>

@@ -7,7 +7,7 @@ from typing import Dict, Any
 
 
 class Table(models.Model):
-    name = models.CharField(max_length=220, unique=True)
+    name = models.CharField(max_length=220)
     modified = models.DateTimeField()
 
     user = models.ForeignKey(
@@ -97,5 +97,7 @@ class Cell(models.Model):
         return {
             'id': self.id,
             'content': self.content,
-            'modified': self.modified
+            'modified': self.modified,
+            'row': self.row.id,
+            'col': self.column.id,
         }

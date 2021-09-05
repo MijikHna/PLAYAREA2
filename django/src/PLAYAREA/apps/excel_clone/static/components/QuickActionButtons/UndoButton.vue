@@ -5,13 +5,20 @@
         <v-icon>mdi-undo</v-icon>
       </v-btn>
     </template>
-    <span>Undo</span>
+    <span>{{ djangoTrans.tooltip }}</span>
   </v-tooltip>
 </template>
 
 <script>
 export default {
   name: "UndoButton",
+  data: () => {
+    return {
+      djangoTrans: {
+        tooltip: gettext("Undo"),
+      },
+    };
+  },
 };
 </script>
 

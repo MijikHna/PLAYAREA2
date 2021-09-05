@@ -387,4 +387,5 @@ yarn-error.log
 /django/src/media_root/
 .vscode/
 **TESTS/
+**/Z-BACKUP/
 **/fontawesome-free-5.15.3-web/

@@ -2,17 +2,20 @@
   <v-app>
     <v-container fluid class="px-0">
       <v-row justify="center">
-        <div class="h4">Excel Clone: {{ tableName }}</div>
+        <div class="h4">{{ djangoTrans.tableHeader }} {{ tableName }}</div>
       </v-row>
 
       <MenuBar></MenuBar>
       <v-divider class="mt-2 mb-0" />
+
       <QuickActionBar></QuickActionBar>
       <v-divider class="mt-0 mb-0" />
+
       <Table ref="excel-table"></Table>
 
-      <ContextMenu ref="context-menu"></ContextMenu>
-      <ModalSimple ref="modal-simple"></ModalSimple>
+      <ContextMenu ref="context-menu" />
+      <ModalSimple ref="modal-simple" />
+      <ProgressFullScreen ref="progress-fullscreen" />
     </v-container>
   </v-app>
 </template>
@@ -24,7 +27,7 @@ import Table from "./Table.vue";
 
 import ContextMenu from "./ContextMenu.vue";
 import ModalSimple from "./ModalSimple.vue";
-
+import ProgressFullScreen from "./ProgressFullScreen.vue";
 export default {
   name: "ExcelClone",
   components: {
@@ -33,9 +36,14 @@ export default {
     Table,
     ContextMenu,
     ModalSimple,
+    ProgressFullScreen,
   },
   data: () => {
-    return {};
+    return {
+      djangoTrans: {
+        tableHeader: gettext("Excel Clone:"),
+      },
+    };
   },
   computed: {
     tableName() {

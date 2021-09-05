@@ -1,8 +1,8 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
-  <script src={% static '/header.bundle.js' %}></script>
-  {% if user.is_authenticated %}
+
+<nav class="navbar navbar-expand-lg justify-content-between navbar-light bg-primary">
   <a href="{% url 'index' %}" class="navbar-brand">PLAYAREA</a>
+  {% if user.is_authenticated %}
   <button
     class="navbar-toggler"
     type="button"
@@ -12,63 +12,9 @@
   >
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarContent">
-    <ul class="navbar-nav mr-auto">
-      {%for app in apps %}
-        {% if app.subApps.count == 0 %}
-          <li class="nav-item">
-            <a
-              data-type="nav-app"
-              data-name="{{ app.name }}"
-              data-href="{{ app.href }}"
-              data-stringified="{{ app.name_stringified }}"
-              data-subapps="false"
-              data-class="nav-link text-white" 
-            ></a>
-          </li>
-        {% else %}
-          <li class="nav-item dropdown">
-            <a
-              data-type="nav-mainapp"
-              data-name="{{ app.name }}"
-              data-href="{{ app.href }}"
-              data-stringified="{{ app.name_stringified }}" 
-              data-id="navbar{{ app.name_stringified }}Dropdown"
-              data-subapps="true"
-              data-class="nav-link dropdown-toggle text-white" 
-            ></a>
-            <div class="dropdown-menu bg-primary">
-              {% for subApp in app.subApps.all %}
-              <a
-                data-type="nav-app"
-                data-name="{{ subApp.name }}"
-                data-href="{{ app.href }}{{ subApp.href }}"
-                data-stringified="{{ subApp.name_stringified }}"
-                data-subapps="false"
-                data-class="dropdown-item text-white"
-              ></a>
-              {% endfor %}
-            </div>
-          </li>
-        {% endif %}
-      {% endfor %}
-      <li class="d-lg-none nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle text-white"
-          href="#"
-          id="UserSettingsDropdown"
-          role="button"
-          data-toggle="dropdown" 
-          aria-haspopup="true" 
-          aria-expanded="false"
-        >My Account</a>
-        <div class="dropdown-menu bg-primary">
-          <a class="dropdown-item text-white" href={% url 'dashboard' %}>My Profile</a>
-          <a class="dropdown-item text-white" href={% url 'logout' %}>Logout</a>
-        </div>
-      </li>
-    </ul>
+    <div id="header"></div>
+
     <div class="d-none d-lg-block mt-2 mt-lg-0 text-right dropdown">
       <a 
         href="#" 
@@ -91,14 +37,21 @@
         <a class="dropdown-item text-white" href={% url 'dashboard' %}>My Profile</a>
         <a class="dropdown-item text-white" href={% url 'logout' %}>Logout</a>
       </div>
-
     </div>
-    {% else %}
-    <div class="w-100 text-right">
+  {% else %}
+    <div class="text-right">
       <a href={% url 'login' %} class="btn btn-warning" type="button">
         Login
       </a>
     </div>
-    {% endif %}
+  {% endif %}
   </div>
 </nav>
+
+{% if js %}
+  <script>
+  '{% if user.is_authenticated and js.apps %}'
+  window.apps = JSON.parse('{{ js.apps|safe|escapejs }}');
+  '{% endif %}'
+  </script>
+{% endif %}

@@ -3,17 +3,17 @@
 
 
 {% block head_index_files %} {% endblock head_index_files %}
-<!-- no-prettier -->
+
 {%block head %}
-<script src={% static 'apps/threejs_tests.bundle.js' %}></script>
+  <script src={% static 'apps/threejs_tests.bundle.js' %}></script>
 {% endblock head %}
 
 {% block navigation %} 
   {% include "header.html" %}
 {% endblock navigation %}
-<!--no-prettier-->
+
 {% block content %}
-<div id="test-threejs-car"></div>
+  <div id="test-threejs-car"></div>
 {% endblock content %}
-<!-- no-prettier -->
+
 {% block footer %} {% endblock footer %}

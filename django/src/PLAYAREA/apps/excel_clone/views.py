@@ -5,8 +5,10 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 
-from django.http.response import JsonResponse
-from django.shortcuts import render
+from django.http.response import JsonResponse, Http404
+from django.shortcuts import redirect, render
+from django.urls import reverse
+
 
 from typing import Dict, List, Any
 
@@ -14,20 +16,8 @@ from main.models import App
 from playarea.utils.Helper import Helper
 
 
+app_name: str = "Excel Clone"
 # Create your views here.
-
-
-def excel_clone(request):
-    if request.user.is_authenticated:
-        context: Dict[str, Any] = {
-            'title': 'Excel Clone',
-            'apps': Helper.getAllApps()
-        }
-
-        return render(request, 'excel-clone.html', context)
-    else:
-        # TODO: return 401/403
-        pass
 
 
 def new_table(request):
@@ -73,17 +63,13 @@ def new_table(request):
                     column.cell_set.add(cell)
                     row.cell_set.add(cell)
 
-            # columns.save()
-            # rows.save()
-            table_serialized = table.serialize()
+            context: Dict[str, Any] = {'tableId': table.id}
 
-            return JsonResponse(table_serialized, safe=False, status=201)
-
+            return JsonResponse(data=context, safe=False, status=201)
         else:
-            return JsonResponse({'status': 401, 'message': 'Bad Request'}, status=400)
-
+            return JsonResponse({'status': 405, 'message': 'Method Not Allowed'}, status=405)
     else:
-        return JsonResponse({'status': 403, 'message': 'Bad Request'}, status=403)
+        return JsonResponse({'status': 401, 'message': 'Unauthorized'}, status=401)
 
 
 def get_tables(request):
@@ -103,13 +89,27 @@ def get_tables(request):
 def open_table(request, id):
     if request.user.is_authenticated:
         if request.method == 'GET':
-            table: Table = Table.objects.get(id=id)
+            context: Dict[str, Any] = {
+                'title': app_name,
+                'js': {
+                    'apps': json.dumps(Helper.getAllApps(serialized=True))
+                }
+            }
 
-            return JsonResponse(table.serialize(), safe=False, status=200)
-        else:
-            return JsonResponse({'status': 401, 'message': 'Bad Request'}, status=400)
+            id = id if id else request.GET.get('id')
+
+            if id:
+                try:
+                    table: Table = Table.objects.get(id=id)
+                except Table.DoesNotExist:
+                    raise Http404(f'Table with id {id} does not exist')
+
+                context['js']['table'] = json.dumps(
+                    table.serialize(), default=str)
+
+            return render(request, 'excel-clone.html', context)
     else:
-        return JsonResponse({'status': 403, 'message': 'Bad Request'}, status=403)
+        return redirect(reverse('login'))
 
 
 def save_table(request, id):

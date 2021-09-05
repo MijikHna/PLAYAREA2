@@ -2,18 +2,18 @@
 {% load static %}
 
 
-{% block head_index_files %} {% endblock head_index_files %}
-<!-- no-prettier -->
+<!-- {% block head_index_files %} {% endblock head_index_files %} -->
+
 {%block head %}
-<script src={% static 'apps/threejs_tests.bundle.js' %}></script>
+  <script src={% static 'apps/threejs_tests.bundle.js' %}></script>
 {% endblock head %}
 
 {% block navigation %} 
   {% include "header.html" %}
 {% endblock navigation %}
-<!--no-prettier-->
+
 {% block content %}
-<div id="test-threejs-002"></div>
+  <div id="test-threejs-002"></div>
 {% endblock content %}
-<!-- no-prettier -->
+
 {% block footer %} {% endblock footer %}

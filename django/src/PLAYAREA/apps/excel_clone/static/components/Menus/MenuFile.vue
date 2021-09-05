@@ -7,7 +7,7 @@
   >
     <template v-slot:activator="{ attrs, on }">
       <v-btn v-bind="attrs" v-on="on" elevation="2" text small tile outlined>
-        {{ btnName }}
+        {{ djangoTrans.btnName }}
       </v-btn>
     </template>
 
@@ -32,8 +32,10 @@ export default {
   components: { NewButton, OpenButton, SaveButton, DeleteButton, CloseButton },
   data: () => {
     return {
-      btnName: "File",
       closeOnClick: true,
+      djangoTrans: {
+        btnName: gettext("File"),
+      },
     };
   },
   methods: {},

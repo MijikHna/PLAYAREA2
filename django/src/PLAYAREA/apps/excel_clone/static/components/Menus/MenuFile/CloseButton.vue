@@ -1,6 +1,6 @@
 <template>
   <v-list-item link>
-    <v-list-item-title>{{ btnName }}</v-list-item-title>
+    <v-list-item-title>{{ djangoTrans.btnName }}</v-list-item-title>
   </v-list-item>
 </template>
 
@@ -9,7 +9,9 @@ export default {
   name: "CloseButton",
   data: () => {
     return {
-      btnName: "Close",
+      djangoTrans: {
+        btnName: gettext("Close"),
+      },
     };
   },
 };

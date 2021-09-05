@@ -5,13 +5,20 @@
         <v-icon>mdi-format-strikethrough</v-icon>
       </v-btn>
     </template>
-    <span>Strike through</span>
+    <span>{{ djangoTrans.tooltip }}</span>
   </v-tooltip>
 </template>
 
 <script>
 export default {
   name: "StirkeThroughButton",
+  data: () => {
+    return {
+      djangoTrans: {
+        tooltip: gettext("Strike through"),
+      },
+    };
+  },
 };
 </script>
 

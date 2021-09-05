@@ -5,13 +5,20 @@
         <v-icon>mdi-format-bold</v-icon>
       </v-btn>
     </template>
-    <span>Bold</span>
+    <span>{{ djangoTrans.tooltip }}</span>
   </v-tooltip>
 </template>
 
 <script>
 export default {
   name: "BoldButton",
+  data: () => {
+    return {
+      djangoTrans: {
+        tooltip: gettext("Bold"),
+      },
+    };
+  },
 };
 </script>
 

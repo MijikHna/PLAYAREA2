@@ -7,7 +7,7 @@
   >
     <template v-slot:activator="{ attrs, on }">
       <v-btn v-bind="attrs" v-on="on" elevation="2" text small tile outlined>
-        {{ btnName }}
+        {{ djangoTrans.btnName }}
       </v-btn>
     </template>
 
@@ -21,8 +21,10 @@ export default {
   components: {},
   data: () => {
     return {
-      btnName: "Format",
       closeOnClick: true,
+      djangoTrans: {
+        btnName: gettext("Format"),
+      },
     };
   },
   methods: {},

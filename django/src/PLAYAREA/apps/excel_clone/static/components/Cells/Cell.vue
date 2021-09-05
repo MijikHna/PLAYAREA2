@@ -2,17 +2,29 @@
   <v-sheet
     color="white"
     elevation="1"
-    :height="cellHeight"
-    :width="cellWidth"
+    :min-height="cellHeight"
+    :min-width="cellWidth"
     @contextmenu="showMenu($event)"
   >
-    <div class="border border-left-0">
+    <div
+      ref="the-cell"
+      class="overflow-hidden"
+      :class="modeClassObj"
+      :contenteditable="editable"
+      :style="{
+        maxHeight: cellHeight + 1 + 'px',
+        maxWidth: cellWidth + 1 + 'px',
+      }"
+      @click="selectMode"
+      @keydown.tab="selectCell($event)"
+    >
       {{ cell.content }}
     </div>
   </v-sheet>
 </template>
 
 <script>
+import { mode } from "../../js/constants.js";
 export default {
   name: "Cell",
   data: () => {
@@ -21,14 +33,36 @@ export default {
       cellWidth: 100,
 
       showContextMenu: false,
-      contextMenuX: 0,
-      contextMenuY: 0,
+      mode: { ...mode },
     };
   },
   props: {
     cell: {
       Type: Object,
       required: true,
+    },
+  },
+  computed: {
+    modeClassObj: function () {
+      let classValue = "border border-left-0";
+
+      switch (this.cell.mode) {
+        case this.mode.EDIT:
+          classValue = "edit-border";
+          break;
+        case this.mode.SELECT:
+          classValue = "select-border";
+          break;
+        default:
+          classValue = "border border-left-0";
+          break;
+      }
+      return classValue;
+    },
+    editable: function () {
+      return this.cell.mode === mode.EDIT || this.cell.mode === mode.SELECT
+        ? true
+        : false;
     },
   },
   methods: {
@@ -53,9 +87,36 @@ export default {
         }, 0);
       }
     },
+    selectMode() {
+      if (this.cell?.mode === mode.SELECT) {
+        this.$emit("modeSelected", mode.EDIT, this.cell);
+        return;
+      }
+
+      this.$emit("modeSelected", mode.SELECT, this.cell);
+    },
+    selectCell(event) {
+      this.cell.mode = mode.SELECT;
+      this.$emit("tabPressed", event);
+    },
   },
 };
 </script>
 
-<style>
+<style scoped>
+.edit-border {
+  border: 1px solid blue;
+  box-shadow: inset 1px 1px blue, inset -1px -1px blue;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+.select-border {
+  border: 1px solid green;
+  box-shadow: inset 1px 1px green, inset -1px -1px green;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+[contenteditable] {
+  outline: none;
+}
 </style>

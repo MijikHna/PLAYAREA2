@@ -1,71 +1,65 @@
 {% extends "BASE.html" %}
-<!-- no-prettier -->
 {% load static %}
+{% load i18n %}
 
-<!-- no-prettier -->
 {% block head %} {% endblock head %}
 
-<!-- no-prettier -->
 {% block navigation %}
-<!-- no-prettier -->
-{% include "header.html" %}
-<!-- no-prettier -->
+  {% include "header.html" %}
 {% endblock navigation %}
 
-<!-- no-prettier -->
 {% block content %}
-<div class="container mt-5">
-  <div class="row">
-    <div class="col text-center">
-      <h2>Login</h2>
-      <form class="mt-5" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next }}" />
-        <div class="form-group row">
-          <label
-            for="{{ form.username.id_for_label }}"
-            class="col-md-2 col-12 text-left"
-            >{{ form.username.label }}</label
-          >
-          <div class="col-md-10 col-12">
-            {{ form.username }}
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col text-center">
+        <h2>{% trans "Login" %}</h2>
+        <form class="mt-5" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ next }}" />
+          <div class="form-group row">
+            <label
+              for="{{ form.username.id_for_label }}"
+              class="col-md-2 col-12 text-left"
+              >{{ form.username.label }}</label
+            >
+            <div class="col-md-10 col-12">
+              {{ form.username }}
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label
-            for="{{ form.password.id_for_label }}"
-            class="col-md-2 col-12 text-left"
-            >{{ form.password.label }}</label
-          >
-          <div class="col-md-10 col-12">
-            {{ form.password }}
-            <!--no-prettier-->
+          <div class="form-group row">
+            <label
+              for="{{ form.password.id_for_label }}"
+              class="col-md-2 col-12 text-left"
+              >{{ form.password.label }}</label
+            >
+            <div class="col-md-10 col-12">
+              {{ form.password }}
+              <!--no-prettier-->
+            </div>
           </div>
-        </div>
-        <div class="row justify-content-end">
-          <div class="col-md-10 col-12">
-            {{ form.non_field_errors }}
+          <div class="row justify-content-end">
+            <div class="col-md-10 col-12">
+              {{ form.non_field_errors }}
+            </div>
           </div>
-        </div>
-        <div class="offset-md-2 col-md-10">
-          <input class="btn btn-info" type="submit" value="Login" />
-        </div>
-      </form>
+          <div class="offset-md-2 col-md-10">
+            <input class="btn btn-info" type="submit" value="Login" />
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
-<div class="container mt-4">
-  <div class="row">
-    <div class="offset-md-2 col-md-10 col-12 text-center">
-      <a
-        class="d-inline-block alert-link m-3"
-        href="/apps/accounts/register?next=/main/"
-        >Register</a
-      >
+  <div class="container mt-4">
+    <div class="row">
+      <div class="offset-md-2 col-md-10 col-12 text-center">
+        <a
+          class="d-inline-block alert-link m-3"
+          href="/apps/accounts/register?next=/main/"
+          >{% trans "Register" %}</a
+        >
+      </div>
     </div>
   </div>
-</div>
 {% endblock content %}
 
-<!-- no-prettier -->
 {% block footer %} {% endblock footer %}

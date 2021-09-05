@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -24,7 +24,9 @@
       integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
       crossorigin="anonymous"
     ></script>
-    
+
+    <script src="{% url 'javascript-catalog' %}"></script>
+
     <link rel="stylesheet" href={% static '/css/default.css' %}>
     <script src={% static '/playarea-base.bundle.js' %}></script>
     <script src={% static '/main.bundle.js' %}></script>
@@ -35,6 +37,7 @@
     {% block navigation %} {% endblock navigation %}
     {% block content %} {% endblock content %}
     {% block footer %} {% endblock footer %}
+    {% block js %} {% endblock js %}
     <div id="notifier-root"></div>
   </body>
 </html>

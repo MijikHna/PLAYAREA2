@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from typing import Dict, Any
+import json
 
 from playarea.utils.Helper import Helper
 
@@ -9,7 +10,9 @@ def test_threejs_001(request):
     if request.user.is_authenticated:
         context: Dict[str, Any] = {}
         context['title'] = 'Test ThreeJS 001'
-        context['apps'] = Helper.getAllApps()
+        context['js'] = {
+            'apps': json.dumps(Helper.getAllApps(serialized=True))
+        }
 
         return render(request, 'test-threejs-001.html', context)
     else:
@@ -21,7 +24,9 @@ def test_threejs_002(request):
     if request.user.is_authenticated:
         context: Dict[str, Any] = {}
         context['title'] = 'Test ThreeJS 002'
-        context['apps'] = Helper.getAllApps()
+        context['js'] = {
+            'apps': json.dumps(Helper.getAllApps(serialized=True))
+        }
 
         return render(request, 'test-threejs-002.html', context=context)
     else:
@@ -33,7 +38,9 @@ def test_threejs_car(request):
     if request.user.is_authenticated:
         context: Dict[str, Any] = {}
         context['title'] = 'Test ThreeJS 002'
-        context['apps'] = Helper.getAllApps()
+        context['js'] = {
+            'apps': json.dumps(Helper.getAllApps(serialized=True))
+        }
 
         return render(request, 'test-threejs-car.html', context)
     else:

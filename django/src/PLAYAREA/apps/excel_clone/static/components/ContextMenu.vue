@@ -17,12 +17,12 @@
         <v-list-item-group>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title>Test 01</v-list-item-title>
+              <v-list-item-title>{{ djangoTrans.entry1 }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <v-list-item link>
             <v-list-item-content>
-              <v-list-item-title>Test 02</v-list-item-title>
+              <v-list-item-title>{{ djangoTrans.entry2 }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
@@ -39,6 +39,10 @@ export default {
       showContext: false,
       x: 0,
       y: 0,
+      djangoTrans: {
+        entry1: gettext("Entry 1"),
+        entry2: gettext("Entry 2"),
+      },
     };
   },
   props: {},

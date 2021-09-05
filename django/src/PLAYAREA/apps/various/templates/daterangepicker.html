@@ -1,72 +1,70 @@
 {% extends "BASE.html" %}
-
 {% load static %}
 
 {% block head_index_files %} {% endblock head_index_files %}
-<!--no-prettier-->
+
 {% block head %} 
-<link rel="stylesheet" href={% static 'js/daterangepicker-3.1/daterangepicker.css' %}>
-<script src={% static 'js/daterangepicker-3.1/moment.min.js' %}></script>
-<script src={% static 'js/daterangepicker-3.1/daterangepicker.js' %}></script>
+  <link rel="stylesheet" href={% static 'js/daterangepicker-3.1/daterangepicker.css' %}>
+  <script src={% static 'js/daterangepicker-3.1/moment.min.js' %}></script>
+  <script src={% static 'js/daterangepicker-3.1/daterangepicker.js' %}></script>
 {% endblock head %}
 
 {% block navigation %} 
   {% include "header.html" %}
 {% endblock navigation %}
 
-<!-- no-prettier -->
 {% block content %}
-<div class="container">
-  <div class="row mt-2">
-    <div class="col my-2">
-      <input type="tel" name="" id="daterangepicker-input1" />
-    </div>
-    <div class="col my-2">
-      <div id="daterangepicker-input2" class="border border-primary">
-        Test
+  <div class="container">
+    <div class="row mt-2">
+      <div class="col my-2">
+        <input type="tel" name="" id="daterangepicker-input1" />
       </div>
-    </div>
-    <div class="col my-2">
-      <button class="btn btn-info" id="daterangepicker-input3">
-        Test
+      <div class="col my-2">
+        <div id="daterangepicker-input2" class="border border-primary">
+          Test
+        </div>
+      </div>
+      <div class="col my-2">
+        <button class="btn btn-info" id="daterangepicker-input3">
+          Test
+        </button>
       </div>
     </div>
   </div>
-</div>
 
-<script>
-  $(document).ready(function() {
-    $('#daterangepicker-input1').daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true,
-        minYear: 1901,
-        maxYear: parseInt(moment().format('YYYY'),10)
-      }, function(start, end, label) {
-        var years = moment().diff(start, 'years');
-        alert("You are " + years + " years old!");
-    });
+  <script>
+    $(document).ready(function() {
+      $('#daterangepicker-input1').daterangepicker({
+          singleDatePicker: true,
+          showDropdowns: true,
+          minYear: 1901,
+          maxYear: parseInt(moment().format('YYYY'),10)
+        }, function(start, end, label) {
+          var years = moment().diff(start, 'years');
+          alert("You are " + years + " years old!");
+      });
 
-    $('#daterangepicker-input2').daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true,
-        minYear: 1901,
-        maxYear: parseInt(moment().format('YYYY'),10)
-      }, function(start, end, label) {
-        var years = moment().diff(start, 'years');
-        alert("You are " + years + " years old!");
-    });
+      $('#daterangepicker-input2').daterangepicker({
+          singleDatePicker: true,
+          showDropdowns: true,
+          minYear: 1901,
+          maxYear: parseInt(moment().format('YYYY'),10)
+        }, function(start, end, label) {
+          var years = moment().diff(start, 'years');
+          alert("You are " + years + " years old!");
+      });
 
-    $('#daterangepicker-input3').daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true,
-        minYear: 1901,
-        maxYear: parseInt(moment().format('YYYY'),10)
-      }, function(start, end, label) {
-        var years = moment().diff(start, 'years');
-        alert("You are " + years + " years old!");
+      $('#daterangepicker-input3').daterangepicker({
+          singleDatePicker: true,
+          showDropdowns: true,
+          minYear: 1901,
+          maxYear: parseInt(moment().format('YYYY'),10)
+        }, function(start, end, label) {
+          var years = moment().diff(start, 'years');
+          alert("You are " + years + " years old!");
+      });
     });
-  });
-</script>
+  </script>
 {% endblock content %}
 
 {% block footer %} {% endblock footer %}

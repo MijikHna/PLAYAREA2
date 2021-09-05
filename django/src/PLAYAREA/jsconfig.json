@@ -1,5 +1,14 @@
 {
   "typeAcquisition": {
     "include": ["jest"]
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "coverage",
+    "dist",
+    "static/css/fontawesome-free-5.15.3-web",
+    "Z-BACKUP",
+    "TESTS",
+    "media"
+  ]
 }

@@ -1,11 +1,13 @@
 <template>
   <div>
     <v-list-item link>
-      <v-list-item-title @click="openModal">{{ btnName }}</v-list-item-title>
+      <v-list-item-title @click="openModal">{{
+        djangoTrans.btnName
+      }}</v-list-item-title>
     </v-list-item>
 
     <div ref="modal-title" v-show="showModalContent">
-      <div class="text-h4">Table name</div>
+      <div class="text-h4">{{ djangoTrans.headerName }}</div>
     </div>
   </div>
 </template>
@@ -21,10 +23,13 @@ export default {
   name: "NewButton",
   data: () => {
     return {
-      btnName: "New",
       tableName: null,
-
       showModalContent: false,
+
+      djangoTrans: {
+        btnName: gettext("New"),
+        headerName: gettext("Table name"),
+      },
     };
   },
   methods: {
@@ -61,6 +66,9 @@ export default {
     async createNewTable() {
       let response = null;
       try {
+        window.excelClone.$children[0].$refs[
+          "progress-fullscreen"
+        ].showProgress(gettext("Table will be created"));
         response = await axios({
           method: "post",
           url: `/apps/excel-clone/new/`,
@@ -69,6 +77,9 @@ export default {
           },
         });
       } catch (e) {
+        window.excelClone.$children[0].$refs[
+          "progress-fullscreen"
+        ].hideProgress();
         globalThis.notifier.$children[0].$refs.notifierWrapper.addNotifier(
           "Excel Clone",
           `Create New Table: ${e.message}`,
@@ -76,12 +87,17 @@ export default {
         );
 
         this.$store.commit("setTable", null);
+        window.history.pushState(
+          { "pageTitle": document.body },
+          "",
+          `${window.location.host}/apps/excel-clone/open?id=1`
+        );
 
         return;
       }
 
       if (response.status === 201) {
-        this.$store.commit("setTable", response.data);
+        window.location.href = `/apps/excel-clone/?id=${response.data.tableId}`;
       }
     },
   },
