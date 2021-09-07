@@ -17,6 +17,7 @@ $(() => {
     });
   }
 
+  // assign js variable "table" provided by django rendering to vue store and delete this js variable
   if (window?.table) {
     excelClone.$store.commit('setTable', window.table);
     delete window.table;

@@ -32,11 +32,6 @@ export default {
       },
     };
   },
-  // computed: {
-  //   selectedTableId() {
-  //     return this.$store.getters.tableId;
-  //   },
-  // }
   methods: {
     async getTables() {
       let response = null;

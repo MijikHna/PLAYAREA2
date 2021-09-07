@@ -15,10 +15,12 @@
         maxHeight: cellHeight + 1 + 'px',
         maxWidth: cellWidth + 1 + 'px',
       }"
+      :v-model="cellContent"
       @click="selectMode"
       @keydown.tab="selectCell($event)"
+      @blur="updateCellValue"
     >
-      {{ cell.content }}
+      {{ cellContent }}
     </div>
   </v-sheet>
 </template>
@@ -34,6 +36,7 @@ export default {
 
       showContextMenu: false,
       mode: { ...mode },
+      cellContent: null,
     };
   },
   props: {
@@ -46,7 +49,7 @@ export default {
     modeClassObj: function () {
       let classValue = "border border-left-0";
 
-      switch (this.cell.mode) {
+      switch (this.cell?.mode) {
         case this.mode.EDIT:
           classValue = "edit-border";
           break;
@@ -64,6 +67,14 @@ export default {
         ? true
         : false;
     },
+  },
+  watch: {
+    cellContent: function (newValue) {
+      this.cellContent = newValue;
+    },
+  },
+  mounted() {
+    this.cellContent = this.cell.content;
   },
   methods: {
     showMenu(event) {
@@ -98,6 +109,13 @@ export default {
     selectCell(event) {
       this.cell.mode = mode.SELECT;
       this.$emit("tabPressed", event);
+    },
+    updateCellValue() {
+      this.$emit(
+        "cellContentUpdated",
+        this.cell,
+        this.$refs["the-cell"].innerHTML.replace(/^\n(\s){0,}/, "")
+      );
     },
   },
 };

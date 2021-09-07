@@ -57,6 +57,7 @@
           }-${table.cells[indexRow * table.columns.length + indexCell].col}`"
           @modeSelected="selectMode"
           @tabPressed="selectCell"
+          @cellContentUpdated="updateCellContent"
         ></Cell>
       </v-row>
 
@@ -96,7 +97,7 @@ export default {
   },
   methods: {
     selectMode(mode, cell) {
-      if (this.selectedCell) {
+      if (this.selectedCell?.mode) {
         this.selectedCell.mode = mode.NONE;
       }
 
@@ -204,7 +205,6 @@ export default {
     selectCell(event) {
       event.preventDefault();
       event.stopPropagation();
-      console.log(event.target);
 
       if (event.shiftKey) {
         this.moveLeft();
@@ -215,6 +215,11 @@ export default {
       if (event.target !== this.$refs.table) {
         this.selectMode(mode.EDIT, this.selectedCell);
       }
+    },
+    updateCellContent(cell, newCellContent) {
+      const theCell = this.$store.getters.getCellById(cell.id);
+
+      theCell.content = newCellContent;
     },
   },
 };

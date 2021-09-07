@@ -81,9 +81,9 @@ def get_tables(request):
             ]
             return JsonResponse(tables_serialized, safe=False, status=200)
         else:
-            return JsonResponse({'status': 401, 'message': 'Bad Request'}, status=400)
+            return JsonResponse({'status': 405, 'message': 'Method Not Allowed'}, status=405)
     else:
-        return JsonResponse({'status': 403, 'message': 'Bad Request'}, status=403)
+        return JsonResponse({'status': 401, 'message': 'Unauthorized'}, status=401)
 
 
 def open_table(request, id):
@@ -113,7 +113,18 @@ def open_table(request, id):
 
 
 def save_table(request, id):
-    pass
+    if not request.user.is_authenticated:
+        return JsonResponse({'status': 401, 'message': 'Unauthorized'}, status=401)
+
+    if request.method != 'PUT':
+        return JsonResponse({'status': 405, 'message': 'Method Not Allowed'}, status=405)
+
+    req_data: Dict(str, Any) = json.loads(request.body.decode('utf-8'))
+
+    for cell in req_data['cells']:
+        Cell.objects.filter(id=cell['id']).update(content=cell['content'])
+
+    return JsonResponse({'status': 201, 'message': 'Table saved'}, status=201)
 
 
 def delete_table(request, id):

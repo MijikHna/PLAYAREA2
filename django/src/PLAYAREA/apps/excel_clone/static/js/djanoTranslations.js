@@ -19,6 +19,7 @@ gettext('Open');
 gettext('Open table');
 // Menus/MenuFile/SaveButton.vue
 gettext('Save');
+gettext('Save Table');
 // Menu/MenuButton.vue
 gettext('Edit');
 // Menus/MenuFile.vue
@@ -37,6 +38,8 @@ gettext('Table name');
 // ModalContent/OpenTable.vue
 gettext('Choose a table');
 gettext('Choose a table');
+// ModalContent/SaveTable.vue
+gettext('Do you really want to save Table?');
 // QuickActionButtons/BoldButton.vue
 gettext('Bold');
 // QuickActionButtons/ItalicButton.vue

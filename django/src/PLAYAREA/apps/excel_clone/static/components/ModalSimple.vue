@@ -43,6 +43,7 @@ export default {
   components: {
     "NewTable": () => import("./ModalContent/NewTable.vue"),
     "OpenTable": () => import("./ModalContent/OpenTable.vue"),
+    "SaveTable": () => import("./ModalContent/SaveTable.vue"),
   },
   data: () => {
     return {
